@@ -1,5 +1,5 @@
 <?php
-namespace Projet\Providers\Path;
+namespace Malla\Core\Provider;
 
 /*
 *---------------------------------------------------------

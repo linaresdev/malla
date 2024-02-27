@@ -1,13 +1,14 @@
 <?php
-namespace Projet
+namespace Malla;
+
 /*
 *---------------------------------------------------------
 * ©IIPEC
 *---------------------------------------------------------
 */
 
-class Driver {
-
+class Driver
+{
     public function info() 
     {
         return [
@@ -32,14 +33,18 @@ class Driver {
         ];
     }
 
-    public function drivers(){}
+    public function drivers()
+    {
+        return [];
+    }
 
-    public function handler($app){}
+    public function handler( $app )
+    {
+    }
 
     public function providers() { return []; }
     public function alias() { return []; }
 
     public function install($app) { }
     public function destroy($app) { }
-
 }

@@ -3,13 +3,13 @@ namespace Malla\Core\Support;
 
 /*
  *---------------------------------------------------------
- * ©Delta
+ * ©IIPEC
  * Santo Domingo República Dominicana.
  *---------------------------------------------------------
 */
 
-class BootLoader {
-
+class BootLoader
+{
 	protected static $app;
 
 	protected static $APP = [];

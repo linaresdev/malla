@@ -27,6 +27,20 @@ Malla::app("agent", new \Malla\Core\Support\Guard($this->app));
 ## HELPERS
 require_once(__DIR__."/Support/Helper.php");
 
+## PATH
+Malla::addPath([
+    "{base}"    => base_path(env("MALLA_DIR", "app")),
+    "{cdn}"     => "{base}/cdn",
+]);
+
+## URLS
+Malla::addUrl([
+    "{base}"    => env("MALLA_DIR", "app"),
+    "{cdn}"     => "{base}/cdn"
+]);
+
+/*
+* START APP*/
 if( env("MALLA_START", false) == true )
 {
     Malla::app("load")->run(new \Malla\Driver());

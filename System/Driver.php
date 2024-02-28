@@ -25,9 +25,9 @@ class Driver
     public function app()
     {
         return [
-            'type'      => 'package',
-            'slug'      => 'cms',
-            'driver'    => '\Project\Driver::class',
+            'type'      => 'core',
+            'slug'      => 'malla',
+            'driver'    => '\Malla\Driver::class',
             'token'     => NULL,
             'activated' => 1
         ];

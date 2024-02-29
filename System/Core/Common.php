@@ -29,8 +29,10 @@ require_once(__DIR__."/Support/Helper.php");
 
 ## PATH
 Malla::addPath([
-    "{base}"    => base_path(env("MALLA_DIR", "app")),
+    "{base}"    => realpath(__DIR__."/../../"),
     "{cdn}"     => "{base}/cdn",
+    "{http}"    => "{base}/Http",
+    "{system}"  => "{base}/System"
 ]);
 
 ## URLS

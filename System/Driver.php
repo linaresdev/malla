@@ -42,7 +42,13 @@ class Driver
     {
     }
 
-    public function providers() { return []; }
+    public function providers() 
+    { 
+        return [
+            \Malla\Provider\ServiceProvider::class,
+            \Malla\Provider\RouteServiceProvider::class
+        ]; 
+    }
     public function alias() { return []; }
 
     public function install($app) { }

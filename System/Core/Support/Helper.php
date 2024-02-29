@@ -8,7 +8,7 @@
 ## PATH
 if( !function_exists("__path") ) {
     function __path($key=null) {
-       return Dgii::app("urls")->path($key);
+       return Malla::app("urls")->path($key);
     }
  }
  
@@ -16,7 +16,7 @@ if( !function_exists("__path") ) {
  if( !function_exists("__url") )
  {
      function __url($uri=null, $parameters=[], $secure=null ) {
-         return Dgii::app("urls")->url($uri, $parameters, $secure);
+         return Malla::app("urls")->url($uri, $parameters, $secure);
      }
  }
  

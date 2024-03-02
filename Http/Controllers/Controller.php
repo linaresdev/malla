@@ -43,7 +43,7 @@ class Controller extends BaseController
     public function render( $view=NULL, $data=[], $mergeData=[]) {
 
         if(view()->exists(($path = $this->path.$view))) {
-            return view(path, data, mergeData);
+            return view($path, $data, $mergeData);
         }
 
         abort(500, 'La vista {$path} no existe');

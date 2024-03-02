@@ -5,4 +5,4 @@
 *---------------------------------------------------------
 */
 
-Route::get("/", "HomeController@index");
+$SKIN = new \Malla\Support\Skin("moon");

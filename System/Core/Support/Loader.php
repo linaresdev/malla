@@ -61,7 +61,8 @@ class Loader {
     public function run($driver=NULL)
     {
         if( !empty(($driver = $this->callInstanceStringClass($driver))) )
-        {            
+        {     
+                   
             ## Handler instance
             if( method_exists($driver, "handler") ) {
                 $driver->handler(self::$app);

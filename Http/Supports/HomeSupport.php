@@ -11,7 +11,7 @@ class HomeSupport
 {
     public function index()
     {
-        $data['title'] = 'Home Page';
+        $data['title'] = __("Home");
         return $data;
     }
 }

@@ -17,6 +17,6 @@ class HomeController extends Controller {
     }
 
     public function index() {
-        $this->render('home', $this->app->index());
+        return $this->render('home', $this->app->index());
     }
 }

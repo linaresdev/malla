@@ -17,6 +17,7 @@ $this->app->bind("Malla", function( $app )
     );
 });
 
+
 $this->app["malla"] = Malla::app();
 
 ## LIBRERIAS
@@ -47,3 +48,9 @@ if( env("MALLA_START", false) == true )
 {
     Malla::app("load")->run(new \Malla\Driver());
 }
+
+## EXCEPTIONS 
+$this->app->singleton(
+    Illuminate\Contracts\Debug\ExceptionHandler::class,
+    \Malla\Core\Exceptions\Handler::class
+);

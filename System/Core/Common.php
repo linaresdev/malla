@@ -29,17 +29,21 @@ Malla::app("agent", new \Malla\Core\Support\Guard($this->app));
 require_once(__DIR__."/Support/Helper.php");
 
 ## PATH
+$mallaDir = env("MALLA_DIR", "app");
 Malla::addPath([
-    "{base}"    => realpath(__DIR__."/../../"),
+    "{base}"    => public_path($mallaDir),
     "{cdn}"     => "{base}/cdn",
-    "{http}"    => "{base}/Http",
-    "{system}"  => "{base}/System"
+    "{themes}"  => "{base}/themes",
+    "{malla}"   => realpath(__DIR__."/../../"),
+    "{http}"    => "{malla}/Http",
+    "{system}"  => "{malla}/System",
 ]);
 
 ## URLS
 Malla::addUrl([
-    "{base}"    => env("MALLA_DIR", "app"),
-    "{cdn}"     => "{base}/cdn"
+    "{base}"    => $mallaDir,
+    "{cdn}"     => "{base}/cdn",
+    "{themes}"  => "{base}/themes"
 ]);
 
 /*

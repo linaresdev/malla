@@ -32,8 +32,10 @@ class es_DO {
          "auth.0"                => "Cuenta deshabilitada",
          "auth.2"                => "Cuenta suspendida de forma temporal",
          "auth.3"                => "Cuenta bloqueada",
-         "auth.login"            => "Acceder a mi cuenta",
+         "auth.login"            => "Acceder",
          "auth.bad"              => "Credenciales incorrectas",
+
+         "auth.getmembership"    => "Solicitar membresía",
 
          "auth.required"         => "Identificate porfavor",
          "auth.update.abrupt"    => "Intentó modificar datos a fuerza bruta",  

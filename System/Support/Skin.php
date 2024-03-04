@@ -8,42 +8,35 @@ namespace Malla\Support;
  *---------------------------------------------------------
 */
 
-class Skin {
-
-   public $name = 'One Theme';
-
+class Skin
+{
    protected $slug;
-
-   protected $resources = [];
-
-   protected $domain;
 
    protected $theme;
 
-   public function __construct( $skin=null ) {
-        
+   public function __construct( $skin=null )
+   {
+      $this->theme   = $skin->app();
+      $this->slug    = $this->theme["slug"];
    }
 
-   public function skin() {
+   public function info() 
+   {
       return $this->theme;
    }
 
-   public function getSlug() {
+   public function getSlug() 
+   {
       return $this->slug;
    }
 
-   public function getPath($key=null) {
-      if( array_key_exists( $key, $this->resources ) ) {
-         return $this->resources[$key];
-      }
-   }
-
-   public function path($uri="index") {
+   public function path($uri="index") 
+   {
       return "$this->slug::$uri";
    }
 
-   public function view($view=NULL, $data=[], $mergeData=[]) {
-
+   public function view($view=NULL, $data=[], $mergeData=[])
+   {
 		if( view()->exists( ($path = $this->path($view)) ) ) {
 			return view($path, $data, $mergeData);
 		}

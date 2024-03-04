@@ -8,6 +8,8 @@ namespace Malla\Provider;
 *---------------------------------------------------------
 */
 
+use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Translation\Translator;
 use Illuminate\Support\ServiceProvider as BaseProvider;
 
 class ServiceProvider extends BaseProvider
@@ -15,7 +17,7 @@ class ServiceProvider extends BaseProvider
 
     protected $assets = [];
     
-    public function boot() {
+    public function boot( Kernel $HTTP, Translator $LANG ) {
         require_once(__path("{http}/App.php"));
     }
 
@@ -83,9 +85,19 @@ class ServiceProvider extends BaseProvider
         {
             if( method_exists( $skin, "load" ) )
             {  
-                if( app("files")->exists($skin->load()) ) {
-                    require_once($skin->load());
-                }
+                if( app("files")->exists($skin->load()) )
+                {
+                    require_once( $skin->load() );
+
+                    $data["skin"] = new \Malla\Support\Skin($skin);
+
+                    if( method_exists($skin, "data") )
+                    {
+                        $data = array_merge($data, $skin->data());
+                    }
+                    
+                    $this->app["view"]->share($data);
+                }                
             }
         }
     }

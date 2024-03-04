@@ -20,6 +20,7 @@ class Driver
             'description'   => 'Description'
         ];
     }
+
     public function app() 
     {
         return [
@@ -28,6 +29,16 @@ class Driver
             'driver'        => \Malla\Moon\Driver::class,
             'serial'        => NULL,
             'activated'     => 1
+        ];
+    }
+
+    public function data()
+    {
+        return [
+            "title"     => "Moon Design",
+            "lang"      => app()->getLocale(),
+            "charset"   => "UTF-8",
+            "container" => "container",
         ];
     }
 

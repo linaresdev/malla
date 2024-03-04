@@ -5,8 +5,6 @@
 *---------------------------------------------------------
 */
 
-$SKIN = new \Malla\Support\Skin("moon");
-
 Malla::addUrl([
     "{moon}" => "{themes}/moon"
 ]);

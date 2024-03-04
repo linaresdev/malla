@@ -6,11 +6,13 @@
 */
 
 /*
-* LANGUAGE */
-//$this->loadGrammary( $LANG );
+* CONFIGS */
 
 /*
-* CONFIGS */
+* LANGUAGE */
+//$this->loadGrammary( $LANG );
+$this->loadGrammary( $LANG );
+
 
 /*
 * MIDDLEWARES */

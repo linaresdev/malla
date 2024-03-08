@@ -11,13 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('terms', function (Blueprint $table) {
+        Schema::create('terms', function (Blueprint $table)
+        {
             $table->id();
+
+            $table->string("name", 200);
             $table->timestamps();
         });
-        
-        Schema::create('taxonomies', function (Blueprint $table) {
+
+        Schema::create('taxonomies', function (Blueprint $table)
+        {
             $table->id();
+
+            $table->unsignedBigInteger("taxonomy_id");
+            $table->string("taxonomy_type", 255);
+            $table->unsignedBigInteger("term_id");
+            $table->foreign("term_id")->references("id")->on("terms")->onDelete("cascade");
+
             $table->timestamps();
         });
     }

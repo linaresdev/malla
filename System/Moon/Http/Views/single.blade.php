@@ -14,9 +14,9 @@
     </head>
 
     <body role="lighter">
-        <nav class="navbar navbar-moon bg-body-tertiary navbar-expand-md shadow-sm fixed-top p-0 px-3">
+        <nav class="navbar navbar-moon bg-white navbar-expand-md shadow-sm fixed-top p-0 px-3">
             
-                <a href="{{__url('{mainbar}')}}" class="navbar-brand px-3 bg-danger link-light">
+                <a href="{{__url('{mainbar}')}}" class="navbar-brand px-3">
                     Linares
                 </a>
                 <button class="navbar-toggler" 
@@ -31,13 +31,13 @@
                 <div id="mainBar" class="collapse navbar-collapse">
                     <ul class="nav ms-auto">
                         <li class="nav-item">
-                            <a href="getmembership" class="nav-link">
+                            <a href="getmembership" class="btn btn-sm bg-success-subtle link-success rounded-pill mt-1 me-1 px-3">
                                 <span class="mdi mdi-gift"></span>
                                 {{__("auth.getmembership")}}
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="login" class="btn btn-sm btn-outline-primary rounded-pill mt-1 px-3">
+                            <a href="login" class="btn btn-sm btn-light rounded-pill mt-1 px-3">
                                 <span class="mdi mdi-login"></span>
                                 {{__("auth.login")}}
                             </a>

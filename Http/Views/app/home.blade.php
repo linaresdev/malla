@@ -1,1 +1,1 @@
-@extends("moon::single")
+@extends("moon::portada")

@@ -49,8 +49,16 @@
 
         <article class="container-fluid">
             <header class="row bg-primary pt-5">
-                <article class="col-md-10 offset-md-1 col-xl-8 offset-xl-2 bg-white p-3" style="height: 300px;">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos voluptatibus et est adipisci iure ullam eligendi. Necessitatibus nulla, tenetur facilis, ipsum esse eos perferendis id sit quas quod unde! Quas?
+                <article class="col-md-10 offset-md-1 col-xl-8 offset-xl-2 text-white" style="height: 300px;">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4>Title</h4>
+                            <div>Texto  a mostrar</div>
+                        </div>
+                        <div>
+                            <img src="{{__url('{moon}/images/banner.png')}}" alt="@">
+                        </div>
+                    </div>
                 </article>
             </header>
             @yield("body", "Body Content") 

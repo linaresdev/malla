@@ -20,8 +20,11 @@ class Meta extends Model {
 
     ];
 
-    public function metatable()
-    {
+    public function apps() {
+        return $this->belongsTo(\Malla\Model\App::class);
+    }
+    
+    public function metable() {
         return $this->morphTo();
     }
 

@@ -8,36 +8,35 @@ namespace Malla\Model;
 */
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class App extends Model
+class Term extends Model
 {
-    use HasFactory;
-
-    protected $table = 'apps';
+    protected $table = 'terms';
 
     protected $fillable = [
         "id",
         "type",
         "parent",
         "slug",
-        "driver",
-        "serial",
+        "name",
         "activated",
         "created_at",
         "updated_at"
     ];
 
-    
+    public function apps() {
+        return $this->morphedByMany(\Malla\Model\App::class, "taxonomies");
+    }
+
     public function configs() {
-        return $this->morphMany(\Malla\Model\Config::class, "configable");
+        return $this->morphedByMany(\Malla\Model\Config::class, "taxonomies");
     }
 
     public function meta() {
         return $this->morphMany(\Malla\Model\Meta::class, "metable");
     }
 
-    public function groups() {
-        return $this->morphToMany(\Malla\Model\Term::class, "taxonomies");
+    public function users() {
+        return $this->morphedByMany(\Malla\User\Model\Store::class, "taxonomies");
     }
 }

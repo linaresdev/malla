@@ -16,28 +16,11 @@ return new class extends Migration
             $table->id();
 
             $table->string("type", 50)->default("package");
-
             $table->unsignedInteger("parent")->default(0);
-
             $table->string("slug", 30);
-
             $table->string("driver", 250)->nullable();
-
             $table->string("serial", 200)->nullable();
-
             $table->char("activated", 1)->default(1);
-
-            $table->timestamps();
-        });
-
-        Schema::create('metas', function (Blueprint $table)
-        {
-            $table->bigIncrements('id');
-
-            $table->text("meta");
-
-            $table->unsigneBigInteger("metatable_id");
-            $table->text("metatable_type");
 
             $table->timestamps();
         });
@@ -48,7 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('apps_meta');
         Schema::dropIfExists('apps');
     }
 };

@@ -13,6 +13,8 @@
 //$this->loadGrammary( $LANG );
 $this->loadGrammary( $LANG );
 
+## DATABASE
+$this->loadMigrationsFrom( __path("{migrations}") );
 
 /*
 * MIDDLEWARES */
@@ -33,3 +35,4 @@ $this->publishes($this->assets, "malla");
 /*
 * SHARE */
 $this->app["view"]->share($data);
+

@@ -37,6 +37,8 @@ Malla::addPath([
     "{malla}"   => realpath(__DIR__."/../../"),
     "{http}"    => "{malla}/Http",
     "{system}"  => "{malla}/System",
+    "{migrations}"  => "{system}/Database/Migrations",
+    "{seeds}"       => "{system}/Database/Seeds"
 ]);
 
 ## URLS

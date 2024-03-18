@@ -34,13 +34,16 @@
     <section class="container">
         <header class="block">
             <h4>MALLA</h4>                    
-            {{__("Es un proyecto V-1.0 para  el desarrollo de aplicaciones simple y de 
-            alto nivel")}}
+            <p>
+                {{__("Malla V-1.0 es un aplicativo de gestión para enfocado en el desarrollo de aplicaciones simple y de 
+                alto nivel.")}}
+            </p>
+            <p>{{__("Al iniciar la instalación se publicara los ficheros requeridos del aplicativo.")}}</p>
         </header>
         <article class="btn">
            <a href="#">{{__("Politicas")}}</a>
-           <a href="#">{{__("Soporte")}}</a>
-           <a href="#">{{__("Iniciar instalacion")}}</a>
+           <a href="https://github.com/linaresdev/malla" target="_blank">{{__("Soporte")}}</a>
+           <a href="{{__url('env')}}">{{__("Iniciar instalación")}}</a>
         </article>
     </section>
 </body>

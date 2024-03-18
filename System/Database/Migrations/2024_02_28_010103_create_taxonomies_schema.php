@@ -20,10 +20,10 @@ return new class extends Migration
             $table->string("type", 80)->default("group");
             $table->string("slug", 80);
             $table->string("name", 255);
+            $table->bigInteger("counter")->default(0);
 
             $table->timestamps();
         });
-
         Schema::create('configs', function (Blueprint $table)
         {
             $table->bigIncrements("id");

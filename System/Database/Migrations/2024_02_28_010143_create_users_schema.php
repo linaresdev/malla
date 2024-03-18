@@ -48,7 +48,6 @@ return new class extends Migration
         {
             $table->dropColumn([
                 "type",
-                "fullname",
                 "firstname",
                 "lastname",
                 "rnc",

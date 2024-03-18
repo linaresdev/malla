@@ -53,10 +53,14 @@ Malla::addUrl([
 if( env("MALLA_START", false) == true )
 {
     Malla::app("load")->run(new \Malla\Driver());
+
+    ## EXCEPTIONS 
+    $this->app->singleton(
+        Illuminate\Contracts\Debug\ExceptionHandler::class,
+        \Malla\Core\Exceptions\Handler::class
+    );
+}
+else {
+    Malla::app("load")->run(new \Malla\Install\Driver());
 }
 
-## EXCEPTIONS 
-$this->app->singleton(
-    Illuminate\Contracts\Debug\ExceptionHandler::class,
-    \Malla\Core\Exceptions\Handler::class
-);

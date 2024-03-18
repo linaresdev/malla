@@ -34,6 +34,10 @@ class Store extends User
         "updated_at"
     ];
 
+    public function counters() {
+        return $this->morphMany(\Malla\Model\Counter::class, "contable");
+    }
+
     public function configs() {
         return $this->morphMany(\Malla\Model\Config::class, "configable");
     }

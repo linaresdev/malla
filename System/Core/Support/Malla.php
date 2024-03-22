@@ -25,4 +25,21 @@ class Malla
     public function addPath($taggs=[]) {
 		return $this->app("urls")->addTag("paths", $taggs);
 	}
+
+	public function publicDir() {
+		return public_path($this->app("urls")->baseDir());
+	}
+
+	public function start()
+	{ 
+		if(($DB =  $this->app("store"))->has("apps") )
+		{
+			if( $DB->empty("apps") )
+			{ 
+				return $DB->get("core", "malla")->state;
+			}
+		}
+
+		return false;
+	}
 }

@@ -22,8 +22,13 @@ class Urls
 		"paths" => []
 	];
 
-	public function __construct( $urls ) {
-		$this->secure = env('APP_SSL', false);
+	public function __construct( $urls )
+	{
+		$this->secure = env('MALLA_SSL', false);
+
+		$this->base_dir = env("MALLA_PUBLIC_DIR", "app");
+		
+		$this->taggs["paths"]["{basedir}"] = public_path($this->base_dir);
 	}
 
 	public function baseDir() {

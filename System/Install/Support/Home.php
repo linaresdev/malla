@@ -11,7 +11,7 @@ class Home
 {
     public function data()
     {
-        $data['title'] = __("Instalacion");
+        $data['title'] = __("Instalación");
 
         return $data;
     }

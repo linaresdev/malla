@@ -23,5 +23,5 @@ return [
     "interface" => [
         "theme",
         "widget"
-    ]
+    ],
 ];

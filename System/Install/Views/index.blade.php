@@ -9,7 +9,11 @@
             background: #f3f3f3;
         }
         h4{
-            margin: 0 0 5px 0;
+            font-size: 28px;
+            margin: 0 0 10px 0;
+        }
+        p{
+            margin: 0 0 3px 0;
         }
         small{
             color: #996;
@@ -23,10 +27,15 @@
         .block{
             padding: 0 0 15px 0;
         }
-        .btn a {
+        .btn {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px 6px;
+            color: #222;
             display: inline-block;
-            padding: 3px 7px;
-            text-decoration: none;
+            font-size: 14px;
+            padding: 5px 10px;
+            text-decoration: none;            
         }
     </style>
 </head>
@@ -38,12 +47,12 @@
                 {{__("Malla V-1.0 es un aplicativo de gestión para enfocado en el desarrollo de aplicaciones simple y de 
                 alto nivel.")}}
             </p>
-            <p>{{__("Al iniciar la instalación se publicara los ficheros requeridos del aplicativo.")}}</p>
+            <p>{{__("Al iniciar la instalación se registran las variables de entorno requeridas.")}}</p>
         </header>
-        <article class="btn">
-           <a href="#">{{__("Politicas")}}</a>
-           <a href="https://github.com/linaresdev/malla" target="_blank">{{__("Soporte")}}</a>
-           <a href="{{__url('env')}}">{{__("Iniciar instalación")}}</a>
+        <article>
+           <a class="btn" href="https://github.com/linaresdev/malla/blob/master/POLICIES.md" target="_blank">{{__("Politicas")}}</a>
+           <a class="btn" href="https://github.com/linaresdev/malla" target="_blank">{{__("Soporte")}}</a>
+           <a class="btn" href="{{__url('env/extra')}}">{{__("Iniciar instalación")}}</a>
         </article>
     </section>
 </body>

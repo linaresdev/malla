@@ -17,8 +17,13 @@ class Meta extends Model {
     protected $table = 'metas';
 
     protected $fillable = [
-
+        "id",
+        "type",
+        "key",
+        "value",
     ];
+
+    public $timestamps = false;
 
     public function apps() {
         return $this->belongsTo(\Malla\Model\App::class);

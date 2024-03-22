@@ -8,6 +8,7 @@ namespace Malla\Model;
 */
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class App extends Model
@@ -37,7 +38,27 @@ class App extends Model
         return $this->morphMany(\Malla\Model\Meta::class, "metable");
     }
 
+    public function info(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => new AppMeta( $this->meta() )
+        );
+    }
+
+    public function addMeta($type, $data) 
+    {
+        foreach( $data as $key => $value )
+        {
+            $this->meta()->create([
+                "type" => $type,
+                "key"  => $key,
+                "value" => $value
+            ]);
+        }
+    }
+
     public function groups() {
         return $this->morphToMany(\Malla\Model\Term::class, "taxonomies");
     }
+
 }

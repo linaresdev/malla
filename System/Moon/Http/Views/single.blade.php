@@ -50,6 +50,8 @@
         <article class="{{$container}}">
             @yield("body", "Body Content") @section("js")
         </article>
+        
+        @section("js")
 
         <script src="{{__url('{moon}/js/jquery-371.min.js')}}"></script>
         <script src="{{__url('{moon}/js/bootstrap.bundle.min.js')}}"></script>

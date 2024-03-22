@@ -45,9 +45,10 @@ return new class extends Migration
             $table->string("metable_type", 255);
             $table->unsignedBigInteger("metable_id");
 
-            $table->text("meta");
+            $table->string("type", 30)->default("meta");
 
-            $table->timestamps();
+            $table->string("key", 30)->nullable();
+            $table->text("value");
         });
 
         Schema::create('address', function (Blueprint $table)

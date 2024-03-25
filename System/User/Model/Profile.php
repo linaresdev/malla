@@ -1,5 +1,5 @@
 <?php
-namespace Malla\Model;
+namespace Malla\User\Model;
 
 /*
 *---------------------------------------------------------
@@ -9,8 +9,8 @@ namespace Malla\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Profile extends Model {
-
+class Profile extends Model 
+{
     protected $table = 'profiles';
 
     protected $fillable = [

@@ -31,6 +31,20 @@ class Database
         {
             $data["apps"] = (new App)->paginate(10);
         }
+        
+        $data["icon"] = (function($slug)
+        {
+            $data['core']       = 'mdi-heart-pulse';
+            $data['package']    = 'mdi-package-variant-closed';
+
+            if( array_key_exists($slug, $data) )
+            {
+                return '<span class="mdi '.$data[$slug].' mdi-24px"></span>';
+            }
+
+            return $slug;
+        });
+        
         //dd((new App)->find(1)->info->author());
         return $data;
     }

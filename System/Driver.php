@@ -25,9 +25,9 @@ class Driver
     public function app()
     {
         return [
-            'type'      => 'core',
+            'type'      => 'package',
             'slug'      => 'malla',
-            'driver'    => '\Malla\Driver::class',
+            'driver'    => \Malla\Driver::class,
             'token'     => NULL,
             'activated' => 1
         ];
@@ -41,8 +41,7 @@ class Driver
 
     public function handler( $app )
     {
-    }
-    
+    }    
 
     public function providers() 
     { 
@@ -53,6 +52,9 @@ class Driver
     }
     public function alias() { return []; }
 
-    public function install($app) { }
+    public function install($app)
+    {
+        $app->create($this->app())->addMeta("info", $this->info());
+    }
     public function destroy($app) { }
 }

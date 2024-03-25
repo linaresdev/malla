@@ -26,7 +26,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Malla\\Core\\Provider\\MallaServiceProvider"
+                "Malla\\Core\\Provider\\CoreServiceProvider"
             ],
             "aliases": {
                 "Malla": "Malla\\Core\\Facade\\Malla"

@@ -49,9 +49,10 @@ Malla::addUrl([
 
 /*
 * START APP*/
-if( env("MALLA_START", false) == true )
+
+if( Malla::start() )
 {
-    Malla::app("load")->run(new \Malla\Driver());
+    Malla::app("load")->run(new \Malla\Core\Driver());
 
     ## EXCEPTIONS 
     $this->app->singleton(

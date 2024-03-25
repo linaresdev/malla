@@ -36,7 +36,10 @@ class Malla
 		{
 			if( $DB->empty("apps") )
 			{ 
-				return $DB->get("core", "malla")->state;
+				if( ( $app = $DB->getApp("core", "core")) != null )
+				{
+					return $app->activated;
+				}				
 			}
 		}
 

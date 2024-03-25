@@ -22,11 +22,6 @@ class Driver
         ];
     }
 
-    public function drivers()
-    {
-        return [];
-    }
-
     public function app()
     {
         return [
@@ -38,12 +33,22 @@ class Driver
         ];
     }
 
+    public function drivers()
+    {
+        return [];
+    }
+
+    public function handler( $app )
+    {
+    }
+
     public function providers() { return []; }
     public function alias() { return []; }
 
     public function install($app)
     { 
-        $app->create($this->app())->addMeta("info", $this->info());
+        $app->create($this->app())->addMeta("info", $this->info());        
+        (new \Malla\Driver)->install($app);
     }
     
     public function destroy($app) { }

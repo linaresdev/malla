@@ -23,14 +23,14 @@ class Env
         {
             $stub   = app("files")->get(__DIR__."/../env.txt");
             $env    =  app("files")->get(base_path('.env'));
-
+            
             if(!app("files")->exists(__DIR__."/../envbase"))
             {
                 app("files")->put(__DIR__."/../envbase", $env);
             }
-
-            $env = str_replace('APP_URL=http://localhost', $stub, $env);
-
+            
+            $env = str_replace("APP_URL=".env("APP_URL"), $stub, $env);
+            
             app("files")->put(base_path('.env'), $env);
         }
 

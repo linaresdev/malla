@@ -8,8 +8,10 @@ namespace Malla\Core\Provider;
 *---------------------------------------------------------
 */
 
-use Malla\Core\Provider\CoreServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
-class MallaServiceProvider extends CoreServiceProvider
+class MallaServiceProvider extends ServiceProvider
 {
+    public function boot(){}
+    public function register(){}
 }

@@ -71,8 +71,8 @@
                 </article>
 
                 <article class="bg-white p-0">
-                    <table class="table table-borderless">
-                        <thead>
+                    <table class="table table-hover table-borderless">
+                        <thead> 
                             <tr>
                                 <th class="bg-primary-subtle">{{__("Tipo")}}</th>
                                 <th class="bg-primary-subtle">{{__("Nombre")}}</th>
@@ -84,7 +84,7 @@
                         <tbody>
                             @foreach($apps as $app)
                             <tr>
-                                <td>{{$app->slug}}</td>
+                                <td class="py-0 pt-1">{!! $icon($app->type) !!}</td>
                                 <td>{{$app->info->name()}}</td>
                                 <td>{{$app->info->description()}}</td>
                                 <td>{{$app->driver}}</td>

@@ -12,6 +12,8 @@ class Loader {
 
 	protected static $app;
 
+    protected $modules = [];
+
 	public function __construct( $app ) {
 		self::$app   = $app;
 	}
@@ -26,6 +28,46 @@ class Loader {
         } 
 
         return $driver;
+    }
+
+    public function getModuleFromDB($module)
+    {
+        $data = self::$app["db"]->table("apps")
+                    ->where("type", $module)
+                    ->get();
+
+        $out = null;
+        
+        foreach( $data as $row )
+        {
+            if( $row->activated == 1 && is_object( ($driver = $this->run($row->driver)) ) )
+            {
+                $out[] = $driver;
+            }            
+        }
+
+        return ( !empty($out) )? $out : [];
+    }
+
+    public function loadModule( $module )
+    {
+        if( !array_key_exists( ($key = \Str::plural($module) ), $this->modules) )
+        {
+            $this->modules[$key] = $this->getModuleFromDB($module);
+        }
+    }
+
+    public function modules()
+    {
+        return $this->modules;
+    }
+
+    public function module($key=null)
+    {
+        if( array_key_exists($key, $this->modules) )
+        {
+            return $this->modules[$key];
+        }
     }
 
 	/*
@@ -61,8 +103,7 @@ class Loader {
     public function run($driver=NULL)
     {
         if( !empty(($driver = $this->callInstanceStringClass($driver))) )
-        {     
-                   
+        {                      
             ## Handler instance
             if( method_exists($driver, "handler") ) {
                 $driver->handler(self::$app);
@@ -91,7 +132,9 @@ class Loader {
             ## Alias
             if( method_exists($driver, "alias") ) {
                 $this->loadAlias( $driver->alias() );
-            }            
+            } 
+            
+            return $driver;
         }
     }
 }

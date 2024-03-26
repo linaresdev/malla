@@ -18,7 +18,7 @@ class Driver {
             'license'       => 'Mit',
             'support'       => 'https://support.lc',
             'version'       => 'V-0.0',
-            'description'   => 'Libraria de usuarios'
+            'description'   => 'Librería de usuarios'
         ];
     }
 
@@ -28,7 +28,7 @@ class Driver {
             'type'          => 'library',
             'slug'          => 'users',
             'driver'        => \Malla\User\Driver::class,
-            'serial'         => NULL,
+            'serial'        => NULL,
             'activated'     => 1
         ];
     }
@@ -40,13 +40,16 @@ class Driver {
     }
 
     public function handler( $app )
-    {
+    { 
     }
 
     public function providers() { return []; }
     public function alias() { return []; }
 
-    public function install($app) { }
+    public function install($app)
+    {
+        $app->create($this->app())->addMeta("info", $this->info());
+    }
     public function destroy($app) { }
 
 }

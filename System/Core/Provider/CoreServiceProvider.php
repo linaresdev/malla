@@ -25,6 +25,8 @@ class CoreServiceProvider extends ServiceProvider
     {
         $this->kernel   = $kernel;
         $this->lang     = $lang;
+
+        
     }
 
     public function register() 
@@ -45,5 +47,5 @@ class CoreServiceProvider extends ServiceProvider
                 $this->app["config"]->set("$alia.$key", $value);
             }
         }
-    }
+    }    
 }

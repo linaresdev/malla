@@ -42,12 +42,22 @@ class Driver
     {
     }
 
-    public function providers() { return []; }
+    public function providers() 
+    {
+        return [
+            \Malla\Core\Provider\MallaServiceProvider::Class,
+        ]; 
+    }
     public function alias() { return []; }
 
     public function install($app)
     { 
-        $app->create($this->app())->addMeta("info", $this->info());        
+        $app->create($this->app())->addMeta("info", $this->info()); 
+        
+        ## Library
+        (new \Malla\User\Driver)->install($app);
+
+        ## Package
         (new \Malla\Driver)->install($app);
     }
     

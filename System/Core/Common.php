@@ -20,6 +20,7 @@ $this->app->bind("Malla", function( $app )
 
 $this->app["malla"] = Malla::app();
 
+
 ## LIBRERIAS
 Malla::app("load", new \Malla\Core\Support\Loader($this->app));
 Malla::app("urls", new \Malla\Core\Support\Urls($this->app));
@@ -50,14 +51,14 @@ Malla::addUrl([
 /*
 * START APP*/
 
-if( Malla::start() )
+if( Malla::start() ) 
 {
-    Malla::app("load")->run(new \Malla\Core\Driver());
-
+    Malla::app("load")->run(new \Malla\Core\Driver());  
+    
     ## EXCEPTIONS 
     $this->app->singleton(
         Illuminate\Contracts\Debug\ExceptionHandler::class,
-        \Malla\Core\Exceptions\Handler::class
+        \Malla\Exception\Handler::class
     );
 }
 else {

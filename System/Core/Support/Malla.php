@@ -26,6 +26,19 @@ class Malla
 		return $this->app("urls")->addTag("paths", $taggs);
 	}
 
+	public function initialize($module)
+	{
+		return $this->app("load")->loadModule($module);
+	}
+
+	public function modules()
+	{
+		return $this->app("load")->modules();
+	}
+	public function module($key)
+	{
+		return $this->app("load")->module($key);
+	}
 	public function publicDir() {
 		return public_path($this->app("urls")->baseDir());
 	}
@@ -45,4 +58,5 @@ class Malla
 
 		return false;
 	}
+	
 }

@@ -35,6 +35,7 @@ class Database
         $data["icon"] = (function($slug)
         {
             $data['core']       = 'mdi-heart-pulse';
+            $data["library"]    = "mdi-shape-outline";
             $data['package']    = 'mdi-package-variant-closed';
 
             if( array_key_exists($slug, $data) )
@@ -44,8 +45,7 @@ class Database
 
             return $slug;
         });
-        
-        //dd((new App)->find(1)->info->author());
+       
         return $data;
     }
 

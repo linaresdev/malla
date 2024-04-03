@@ -16,8 +16,14 @@ class ServiceProvider extends BaseProvider
 {
 
     protected $assets = [];
+
+    protected $grammariePath = [];
     
     public function boot( Kernel $HTTP, Translator $LANG ) {
+
+        $this->http = $HTTP;
+        $this->lang = $LANG;
+
         require_once(__path("{http}/App.php"));
     }
 
@@ -42,6 +48,25 @@ class ServiceProvider extends BaseProvider
            $lines   = $grammaries->lines();
            
            $LANG->addLines( $lines, $header["slug"] );
+        }
+    }
+
+    public function sourceGrammaries($path)
+    {
+
+        if( app("files")->exists( ($file = "$path/".$this->app->getLocale().".php")) )
+        {
+            $this->grammariesPath[] = $file;
+
+            $locale = app("files")->getRequire($file);
+            
+            if( !empty($locale->getGrammaries()) )
+            {
+                $header         = $locale->header();
+                $grammaries     = $locale->getGrammaries();
+
+                $this->lang->addLines($grammaries, $header["slug"]);
+            }            
         }
     }
 

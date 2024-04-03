@@ -1,4 +1,4 @@
-@extends("moon::auth")
+@extends("moon::getmembership")
 
     @section("body")
 

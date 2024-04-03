@@ -18,9 +18,9 @@ class BootLoader
 		self::$app = $app;
 	}
 
-	public function load($dgii, $key=NULL, $args=NULL, $params=NULL) {
+	public function load($app, $key=NULL, $args=NULL, $params=NULL) {
 
-		if(empty($key)) return $dgii;
+		if(empty($key)) return $app;
         if($key == "local") return $this;
 
 		if(!empty($key) && empty($args)) {

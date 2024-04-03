@@ -49,9 +49,24 @@
 
         <article class="{{$moon_container}}">
             <section class="{{$moon_wrapp}}">
-                <article class="bg-white rounded-1 shadow-sm mt-5 mx-auto p-3" style="max-width: 420px;">
-                    <h4>Login</h4>
+                <article class="bg-white rounded-3 shadow-sm mt-5 mx-auto p-3">
+                    <h4 class="py-2">
+                        <span class="mdi mdi-gift-outline"></span>
+                        {{__("account.getmembership")}}
+                    </h4>
+
                     <form action="#">
+
+                        <div class="form-floating mb-2">
+                            <input type="text"
+                                name="fullname"
+                                value="{{old('fullname')}}"
+                                placeholder="{{__('words.fullname')}}" 
+                                class="form-control"
+                                autocomplete="off"
+                                id="fieldEmail">
+                            <label for="fieldEmail">{{__('words.fullname')}}</label>
+                        </div>
                         <div class="form-floating mb-2">
                             <input type="email"
                                 name="email"
@@ -63,14 +78,12 @@
                             <label for="fieldEmail">{{__('words.email')}}</label>
                         </div>
 
-                        <div class="form-floating mb-2">
-                            <input type="password"
-                                name="password"
-                                value="{{old('password')}}"
-                                placeholder="{{__('words.password')}}" 
-                                class="form-control"
-                                id="fieldEmail">
-                            <label for="fieldEmail">{{__('words.password')}}</label>
+                        <div class="mby-2">
+                            @csrf
+                            <button class="btn btn-sm btn-primary">
+                                <span class="mdi mdi-send-outline"></span>
+                                {{ __("words.request") }}
+                            </button>
                         </div>
                     </form>
                 </article>

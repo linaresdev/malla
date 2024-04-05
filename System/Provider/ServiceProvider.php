@@ -8,6 +8,7 @@ namespace Malla\Provider;
 *---------------------------------------------------------
 */
 
+use Malla\Core\Facade\Malla;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Translation\Translator;
 use Illuminate\Support\ServiceProvider as BaseProvider;
@@ -19,8 +20,8 @@ class ServiceProvider extends BaseProvider
 
     protected $grammariePath = [];
     
-    public function boot( Kernel $HTTP, Translator $LANG ) {
-
+    public function boot( Kernel $HTTP, Translator $LANG )
+    {
         $this->http = $HTTP;
         $this->lang = $LANG;
 
@@ -53,7 +54,6 @@ class ServiceProvider extends BaseProvider
 
     public function sourceGrammaries($path)
     {
-
         if( app("files")->exists( ($file = "$path/".$this->app->getLocale().".php")) )
         {
             $this->grammariesPath[] = $file;
@@ -99,31 +99,42 @@ class ServiceProvider extends BaseProvider
 
     public function loadSkin($skin) 
     {
-        if( is_string($skin) )
-        {
-            if( class_exists($skin) ) {
-                $skin = new $skin();
+        if( array_key_exists( $skin, ($themes = Malla::module("themes"))) )
+        {            
+            if( method_exists( ($driver = $themes[$skin]), "load") )
+            {
+                require_once( $driver->load() );
             }
         }
 
-        if( is_object($skin) )
-        {
-            if( method_exists( $skin, "load" ) )
-            {  
-                if( app("files")->exists($skin->load()) )
-                {
-                    require_once( $skin->load() );
+        
 
-                    $data["skin"] = new \Malla\Support\Skin($skin);
+        // if( array_key_exists($skin, ($themes = Malla::module("themes"))) )
+        // {
+        //     $driver = $themes[$skin];
+            
+        //     if( is_object($driver) )
+        //     {
+        //         if( method_exists( $driver, "load" ) )
+        //         {     
+        //             if( app("files")->exists($driver->load()) )
+        //             {
+        //                 require_once( $driver->load() );
 
-                    if( method_exists($skin, "data") )
-                    {
-                        $data = array_merge($data, $skin->data());
-                    }
-                    
-                    $this->app["view"]->share($data);
-                }                
-            }
-        }
+        //                 if( method_exists($driver, "data") ) 
+        //                 {
+        //                     $data = $driver->data();
+
+        //                     $data["skin"] = new \Malla\Support\Skin($driver);
+    
+        //                     $this->app["skin"] = $data["skin"];
+                        
+        //                     $this->app["view"]->share($data);
+        //                 }                        
+                        
+        //             }                
+        //         }
+        //     }
+        // }        
     }
 }

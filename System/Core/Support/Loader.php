@@ -42,7 +42,7 @@ class Loader {
         {
             if( $row->activated == 1 && is_object( ($driver = $this->run($row->driver)) ) )
             {
-                $out[] = $driver;
+                $out[$row->slug] = $driver;
             }            
         }
 

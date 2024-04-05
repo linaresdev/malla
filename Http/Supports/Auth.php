@@ -10,9 +10,14 @@ namespace Malla\Http\Supports;
 class Auth 
 {
     public function index()
-    {
+    {        
         $data['title'] = __("words.auth");
 
         return $data;
+    }
+
+    public function logon()
+    {
+        return back();
     }
 }

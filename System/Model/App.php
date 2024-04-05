@@ -45,6 +45,15 @@ class App extends Model
         );
     }
 
+    public function addConfig($data)
+    {
+        foreach( $data as $key => $value )
+        {
+            $this->config()->create(["key" => $key, "value" => $value])
+        }
+
+        return $this;
+    }
     public function addMeta($type, $data) 
     {
         foreach( $data as $key => $value )
@@ -55,6 +64,8 @@ class App extends Model
                 "value" => $value
             ]);
         }
+
+        return $this;
     }
 
     public function groups() {

@@ -1,6 +1,1 @@
-@extends("moon::getmembership")
-
-    @section("body")
-
-        Avivate
-    @endsection
+@extends($skin->path("partial.getmembership"))

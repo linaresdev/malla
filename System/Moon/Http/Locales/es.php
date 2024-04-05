@@ -16,8 +16,9 @@ return (new class
     public function getGrammaries() 
     {
         return [
-            "account.getmembership" => "Solicitar mi cuenta",
+            "account.getmembership" => "Solicitar mi membresía",
             "words.auth"    => "Autenticación",
+            "words.logon"   => "Acceder",
             "words.request" => 'Solicitar',
         ];
     }

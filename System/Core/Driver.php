@@ -38,9 +38,7 @@ class Driver
         return [];
     }
 
-    public function handler( $app )
-    {
-    }
+    public function handler( $app ) {}
 
     public function providers() 
     {
@@ -59,6 +57,9 @@ class Driver
 
         ## Package
         (new \Malla\Driver)->install($app);
+
+        ## Theme
+        (new \Malla\Moon\Driver)->install($app);
     }
     
     public function destroy($app) { }

@@ -33,15 +33,21 @@ class Driver
         ];
     }
 
+    public function handler( $app )
+    {
+        $configs["app.skin"]        = "moon";
+        $configs["app.admin.skin"]  = "moon";
+
+        foreach( $configs as $key => $value ) {
+            $app["config"]->set($key, $value);
+        }
+    } 
+
     public function drivers()
     {
         return [
         ];
-    }
-
-    public function handler( $app )
-    {
-    }    
+    }   
 
     public function providers() 
     { 

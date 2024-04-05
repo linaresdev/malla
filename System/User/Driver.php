@@ -41,6 +41,10 @@ class Driver {
 
     public function handler( $app )
     { 
+        ## PRPViDER
+        $app["config"]->set(
+            "auth.providers.users.model", \Malla\User\Model\Store::class
+        );
     }
 
     public function providers() { return []; }

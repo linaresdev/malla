@@ -37,6 +37,8 @@ class Database
             $data['core']       = 'mdi-heart-pulse';
             $data["library"]    = "mdi-shape-outline";
             $data['package']    = 'mdi-package-variant-closed';
+            $data['theme']      = 'mdi-format-paint';
+
 
             if( array_key_exists($slug, $data) )
             {

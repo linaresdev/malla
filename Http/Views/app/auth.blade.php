@@ -1,6 +1,1 @@
-@extends("moon::auth")
-
-    @section("body")
-
-        Avivate
-    @endsection
+@extends("moon::partial.auth")

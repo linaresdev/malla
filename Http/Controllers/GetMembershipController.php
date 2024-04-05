@@ -8,6 +8,7 @@ namespace Malla\Http\Controllers;
 */
 
 use Malla\Http\Supports\GetMembership;
+use Malla\Http\Requests\GetMembershipRequest;
 
 class GetMembershipController extends Controller {
 
@@ -19,5 +20,9 @@ class GetMembershipController extends Controller {
     public function index()
     {
         return $this->render('getmembership', $this->app->data());
+    }
+
+    public function getMembership( GetMembershipRequest $request )
+    {
     }
 }

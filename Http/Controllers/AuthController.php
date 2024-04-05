@@ -17,6 +17,10 @@ class AuthController extends Controller
     }
 
     public function index() {
-        return $this->render('auth', $this->app->index());
+        return $this->render( "auth", $this->app->index() );
+    }
+
+    public function logon() {
+        return $this->app->logon();
     }
 }

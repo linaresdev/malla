@@ -49,7 +49,7 @@ class App extends Model
     {
         foreach( $data as $key => $value )
         {
-            $this->config()->create(["key" => $key, "value" => $value])
+            $this->config()->create(["key" => $key, "value" => $value]);
         }
 
         return $this;

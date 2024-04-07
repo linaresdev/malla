@@ -9,11 +9,11 @@
             </h4>
 
             @if($errors->any())
-            <ul class="form-error">
+            <div class="rounded-1 bg-light px-3 py-2 mb-2">
                 @foreach($errors->all() as $error )
-                <li>{{$error}}</li>
+                <p class="m-0 text-danger fs-6">{{$error}}</p>
                 @endforeach
-            </ul>
+            </div>
             @endif
 
             <form action="{{__url('{current}')}}" method="POST">

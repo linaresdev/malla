@@ -11,15 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::create('categories', function (Blueprint $table)
+        {
+            $table->id();
+
+            $table->string("slug", 100);
+            $table->string("name", 70);
+
+            $table->boolean("activated")->default(1);
+            
+        });
         Schema::create('posts', function (Blueprint $table)
         {
             $table->bigIncrements("id");
 
             $table->unsignedBigInteger("author")->nullable();
-            $table->foreing("autor")->references("id")->on("users")->onDelete('set null');
+            //$table->foreign('author')->references('id')->on('users')->onDelete('set null');
 
             $table->unsignedBigInteger("category_id");
-            $table->foreing("category_id")->references("id")->on("categories")->onDelete('set null');
+            //$table->foreign("category_id")->references("id")->on("categories")->onDelete('set null');
 
             $table->string("postable_type", 255);
             $table->unsignedBigInteger("postable_id");
@@ -49,6 +59,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('caregories');
         Schema::dropIfExists('posts');
     }
 };

@@ -31,13 +31,19 @@
                         <a href="{{__url('database/migrate/install')}}" class="btn btn-sm btn-primary">
                             <span class="mdi mdi-database-import-outline mdi-18px"></span>
                             {{ __('Migrar a hora') }}
-                        </a>
+                        </a>                        
                     </div>
                     <div class="p-3">
                         <h4 class="fw-bold fs-5">
                             {{__("Migraciones")}}
                         </h4>
-                        {{__("Migraciones pendientes para instalar")}}
+                        <div>
+                            {{__("Migraciones pendientes para instalar")}}
+                            <a href="{{__url('env')}}" class="btn p-0 mx-3">
+                                << {{__("Retroceder")}}
+                            </a>
+                        </div>
+                        
                     </div>
                 </article>
             
@@ -100,8 +106,6 @@
                         </tbody>
                     </table>
                 </article>
-                @endif
-
                 <article class="bg-white p-3 text-center">
                     <a href="{{__url('env')}}" class="btn btn-sm btn-primary">
                         << {{__("Retroceder")}}
@@ -110,6 +114,9 @@
                         {{__("Finalizar")}} >>
                     </a>
                 </article>
+                @endif
+
+                
             </article>
         </main>
     </body>

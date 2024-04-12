@@ -5,6 +5,7 @@
 *---------------------------------------------------------
 */
 
+
 Route::get("/", "HomeController@index");
 
 Route::get("/login", "AuthController@index");

@@ -53,4 +53,9 @@ class Store extends User
     public function groups() {
         return $this->morphToMany(\Malla\Model\Term::class, "taxonomies")->withPivot('created_at');
     }
+
+    public function posts()
+    {
+        
+    }
 }

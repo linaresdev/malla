@@ -19,7 +19,7 @@ class Env
 
     public function extra()
     {
-        if( !is_bool(env("MALLA_START")) )
+        if( empty(env("MALLA_PUBLIC_DIR")) )
         {
             $stub   = app("files")->get(__DIR__."/../env.txt");
             $env    =  app("files")->get(base_path('.env'));

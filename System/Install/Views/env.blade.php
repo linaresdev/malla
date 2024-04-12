@@ -56,11 +56,21 @@
 
         <form action="{{__url('env')}}" method="POST">
             @if(empty(env('MALLA_HASH')))
-            <div class="block">
+            <div class="block" style="background: #fff;border: 1px solid #ddd;display:table;margin: 0 0 15px 0;padding:15px 15px;">
                 <label for="password">{{__("Define una clave de recuperación")}}</label>
-                <input type="text" 
-                    name="password" 
-                    value="{{old('password', \Str::random(12))}}">
+                <table>
+                    <tr>
+                        <td>
+                        <input type="text" 
+                            name="password" 
+                            value="{{old('password', \Str::random(12))}}"
+                            class="form-control">
+                        </td>
+                        <td>
+                            <button type="submit" class="btn">Actualizar</button>
+                        </td>
+                    </tr>
+                </table>   
             </div>
             @endif
             <div class="block">

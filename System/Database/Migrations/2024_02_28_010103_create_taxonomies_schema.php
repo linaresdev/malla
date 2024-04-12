@@ -17,13 +17,16 @@ return new class extends Migration
 
             $table->bigInteger("parent")->default(0);
 
-            $table->string("type", 80)->default("group");
+            $table->string("type", 80)->default("info");
+
             $table->string("slug", 80);
             $table->string("name", 255);
+
             $table->bigInteger("counter")->default(0);
 
             $table->timestamps();
         });
+
         Schema::create('configs', function (Blueprint $table)
         {
             $table->bigIncrements("id");
@@ -34,8 +37,7 @@ return new class extends Migration
             $table->string("key", 100);
             $table->string("value");
 
-            $table->boolean("activated")->default(1);
-           
+            $table->boolean("activated")->default(1);           
         });
 
         Schema::create('metas', function (Blueprint $table)
@@ -74,12 +76,16 @@ return new class extends Migration
 
         Schema::create('taxonomies', function (Blueprint $table)
         {
-            $table->id();
+            $table->bigIncrements("id");
 
             $table->unsignedBigInteger("taxonomies_id");
             $table->string("taxonomies_type", 255);
-            $table->unsignedBigInteger("term_id");
-            $table->foreign("term_id")->references("id")->on("terms")->onDelete("cascade");
+
+            $table->unsignedBigInteger("anchor_id")->nullable();
+            
+            $table->string("taxonomy", 45);
+
+            $table->bigInteger("counter")->default(0);
 
             $table->timestamps();
         });

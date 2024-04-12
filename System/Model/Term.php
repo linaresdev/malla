@@ -39,4 +39,13 @@ class Term extends Model
     public function users() {
         return $this->morphedByMany(\Malla\User\Model\Store::class, "taxonomies");
     }
+
+    public function taxonomies() {
+        return $this->morphMany(\Malla\Model\Taxonomy::class, "taxonomies");
+    }
+
+    public function createTaxonomy($data)
+    {
+        return $this->taxonomies()->create($data);
+    }
 }

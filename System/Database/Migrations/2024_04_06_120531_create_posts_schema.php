@@ -17,11 +17,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger("user_id")->nullable();            
             $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
-           
-            //$table->unsignedBigInteger("category_id");
-            //$table->foreign('category_id')->references('id')->on('taxonomies')->nullOnDelete();
-            
-            //$table->foreign("category_id")->references("id")->on("categories")->onDelete('set null');
+                       
             $table->string("password", 75)->nullable();
 
             $table->string("type", 30)->default("post");
@@ -45,26 +41,44 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('comments', function (Blueprint $table)
+        Schema::create('taxonomies', function (Blueprint $table)
         {
             $table->bigIncrements("id");
 
-            $table->unsignedBigInteger("parent")->default(0);
+            $table->bigInteger("parent")->default(0);
+            
+            $table->string("tax", 45);
+            $table->text("description");
 
-            $table->string("commentable_type", 255);
-            $table->unsignedBigInteger("commentable_id");
-
-            $table->string("author", 120)->nullable();
-            $table->string("author_email", 120)->nullable();
-
-            $table->text("body");
-
-            $table->integer('comment_count')->default(0);
-
-            $table->boolean("activated")->default(1);
+            $table->bigInteger("counter")->default(0);
 
             $table->timestamps();
         });
+
+        Schema::create('terms', function (Blueprint $table)
+        {
+            $table->bigIncrements("id");
+
+            $table->unsignedBigInteger("tax_id");
+            $table->foreign('tax_id')->references('id')->on('taxonomies')->onDelete('CASCADE')->onUpdate('CASCADE');
+
+            $table->string("slug", 80);
+
+            $table->string("name", 255);
+        });
+
+        Schema::create('posts_taxonomies_pivots', function (Blueprint $table) 
+        {
+            $table->bigIncrements('id');
+
+            $table->unsignedBigInteger('post_id');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('CASCADE')->onUpdate('CASCADE');
+
+            $table->unsignedBigInteger('tax_id');
+            $table->foreign('tax_id')->references('id')->on('taxonomies')->onDelete('CASCADE')->onUpdate('CASCADE');
+
+            $table->engine = 'InnoDB';
+        });        
     }
 
     /**
@@ -72,7 +86,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('posts_taxonomies_pivots');
+        Schema::dropIfExists('terms');
+        Schema::dropIfExists('taxonomies');
         Schema::dropIfExists('posts');
-        Schema::dropIfExists('comments');
     }
 };

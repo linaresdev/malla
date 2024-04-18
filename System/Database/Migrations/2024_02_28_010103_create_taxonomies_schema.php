@@ -11,22 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('terms', function (Blueprint $table)
-        {
-            $table->bigIncrements("id");
-
-            $table->bigInteger("parent")->default(0);
-
-            $table->string("type", 80)->default("info");
-
-            $table->string("slug", 80);
-            $table->string("name", 255);
-
-            $table->bigInteger("counter")->default(0);
-
-            $table->timestamps();
-        });
-
         Schema::create('configs', function (Blueprint $table)
         {
             $table->bigIncrements("id");
@@ -72,23 +56,7 @@ return new class extends Migration
             $table->string("location",30)->nullable();
 
             $table->timestamps();
-        });
-
-        Schema::create('taxonomies', function (Blueprint $table)
-        {
-            $table->bigIncrements("id");
-
-            $table->unsignedBigInteger("taxonomies_id");
-            $table->string("taxonomies_type", 255);
-
-            $table->unsignedBigInteger("anchor_id")->nullable();
-            
-            $table->string("taxonomy", 45);
-
-            $table->bigInteger("counter")->default(0);
-
-            $table->timestamps();
-        });
+        });        
     }
 
     /**
@@ -96,10 +64,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('taxonomies');
+        Schema::dropIfExists('metas');
         Schema::dropIfExists('address');
         Schema::dropIfExists('configs');
-        Schema::dropIfExists('metas');
-        Schema::dropIfExists('terms');
     }
 };

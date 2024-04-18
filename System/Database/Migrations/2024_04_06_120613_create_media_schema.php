@@ -31,6 +31,27 @@ return new class extends Migration
 
             $table->timestamps();
         });
+
+        Schema::create('comments', function (Blueprint $table)
+        {
+            $table->bigIncrements("id");
+
+            $table->unsignedBigInteger("parent")->default(0);
+
+            $table->string("commentable_type", 255);
+            $table->unsignedBigInteger("commentable_id");
+
+            $table->string("author", 120)->nullable();
+            $table->string("author_email", 120)->nullable();
+
+            $table->text("body");
+
+            $table->integer('comment_count')->default(0);
+
+            $table->boolean("activated")->default(1);
+
+            $table->timestamps();
+        });
     }
 
     /**
@@ -39,5 +60,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('medias');
+        Schema::dropIfExists('comments');
     }
 };

@@ -13,7 +13,7 @@
 
     </head>
 
-    <body role="lighter">        
+    <body role="moon">        
 
         <article class="{{$container}}">
 

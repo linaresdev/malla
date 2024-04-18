@@ -3,3 +3,260 @@ body{
     background-size: cover;
     height: 100vh;
 }
+
+[role=moon] {
+    padding: 0 0;
+}
+[role=moon] .moon-navbar {
+    background-color: #fff;
+    position: fixed;
+    top: 0; 
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+[role=moon] .moon-navbar .navbar {
+    min-height: 50px !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+[role=moon] .moon-navbar .navbar .navbar-toggler{
+    border: none;
+}
+[role=moon] .moon-navbar .navbar .navbar-toggler:focus{
+    outline: none;
+    box-shadow: none;
+}
+[role=moon] .moon-navbar .navbar .swap-nav {
+    padding-left: 15px;
+    padding-right: 15px;
+    display: none;
+    z-index: 999;
+}
+[role=moon] .moon-navbar .navbar .swap-nav [class*="mdi mdi-"] {
+    font-size: 24px;
+}
+
+/* NAV */
+[role=moon] .moon-nav {
+    background-color: #fff;
+    position: fixed;
+    width: 260px;
+    top: 50px;
+    left: 0;
+    bottom: 0;
+    transition-property: left;
+    transition-duration: .2s;
+}
+
+/* BODY */
+[role=moon] .moon-body {
+    display: block;
+    height: 100vh;
+    margin: 0 260px 0 260px;
+    padding: 65px 0 15px 0;
+    transition-property: margin;
+    transition-duration: .2s;
+}
+/* ASIDE */
+[role=moon] .moon-aside {
+    background-color: #fff;
+    position: fixed;
+    width: 260px;
+    top: 50px;
+    right: 0;
+    bottom: 0;
+    transition-property: right;
+    transition-duration: .2s;
+    z-index: 999;
+}
+[role=moon] .moon-navbar .navbar .swap-aside {
+    padding: 0 15px 0 15px;
+    display: none;
+}
+
+[role=moon] .moon-navbar .navbar .moon-navbar-body .swap-aside {
+    padding: 0 15px 0 15px;
+    display: none;
+}
+
+[role=moon] .moon-navbar .swap-aside [class*="mdi mdi-"] {
+    font-size: 24px;
+}
+/*
+* LAYOUT LG */
+[role=moon] .moon-layout-lg .moon-body {
+    margin-left: 260px;
+    transition-property: margin-left;
+}
+/*
+* LAYOUT MD */
+[role=moon] .moon-layout-md .navbar.moon-navbar {
+    padding-right: 0px !important;
+}
+[role=moon] .moon-layout-md .moon-navbar .navbar .swap-nav {
+    display: none;
+}
+[role=moon] .moon-layout-md .moon-aside {
+    background-color: #fff;
+    right: -260px;
+    transition-property: right;
+    transition-duration: .2s;
+}
+[role=moon] .moon-layout-md .moon-aside.swap-show {
+    right: 0;
+    transition-property: right;
+    transition-duration: .2s;
+}
+[role=moon] .moon-layout-md .moon-navbar .moon-navbar-body .swap-aside {
+    display: inline-block;
+}
+[role=moon] .moon-layout-md .moon-body {
+    margin-right: 0;
+    transition-property: margin-left;
+    transition-duration: .2s;
+}
+/*
+* LAYOUT SM */
+[role=moon] .moon-layout-sm .moon-navbar .moon-navbar-body .swap-aside,
+[role=moon] .moon-layout-sm .moon-navbar .swap-nav  {
+    display: inline-block;
+}
+[role=moon] .moon-layout-sm .moon-nav{
+    left: -260px;
+    transition-property: left;
+    transition-duration: .2s;
+}
+[role=moon] .moon-layout-sm .moon-nav.swap-show{
+    left: 0;
+    transition-property: left;
+    transition-duration: .2s;
+}
+[role=moon] .moon-layout-sm .moon-aside{
+    right: -260px;
+    transition-property: right;
+    transition-duration: .2s;
+}
+[role=moon] .moon-layout-sm .moon-aside.swap-show {
+    right: 0;
+    transition-property: right;
+    transition-duration: .2s;
+}
+[role=moon] .moon-layout-sm .moon-body {
+    margin-left: 20%;
+    transition-property: margin-left;
+    transition-duration: .2s;
+}
+[role=moon] .moon-layout-sm .moon-body {
+    margin-right: 20%;
+    transition-property: margin-right;
+}
+
+/* MRDIA QUERY */
+@media( max-width: 1280px ) {
+    [role=moon] .moon-layout-lg .navbar.moon-navbar {
+        padding-right: 0px !important;
+    }
+    [role=moon] .moon-layout-lg .moon-navbar .moon-navbar-body .swap-aside {
+        display: inline-block;
+    }
+    [role=moon] .moon-layout-lg .moon-aside {
+        right: -280px;
+        transition-property: right;
+        transition-duration: .2s;
+    }
+    [role=moon] .moon-layout-lg .moon-aside.swap-show {
+        right: 0;
+        transition-property: right;
+        transition-duration: .2s;
+    }
+    [role=moon] .moon-layout-lg .moon-body {
+        margin-right: 0;
+        transition-property: margin-right;
+        transition-duration: .2s;
+    }
+    [role=moon] .moon-layout-sm .moon-body {
+        margin-left: 10%;
+        transition-property: margin-left;
+        transition-duration: .2s;
+    }
+    [role=moon] .moon-layout-sm .moon-body {
+        margin-right: 10%;
+        transition-property: margin-right;
+    }
+}
+
+@media( max-width: 990px )
+{
+    [role=moon] .moon-navbar .navbar {
+        padding-left: 0px !important;
+    }
+    [role=moon] .moon-navbar .navbar .swap-nav {
+        display: inline-block;
+    }
+    [role=moon] .moon-nav {
+        left: -260px;
+        transition-property: left;
+        transition-duration: .2s;
+    }
+    [role=moon] .moon-nav.swap-show {
+        left: 0;
+        transition-property: left;
+        transition-duration: .2s;
+    }
+    [role=moon] .moon-body,
+    [role=moon] .moon-layout-lg .moon-body {
+        margin-left: 0;
+        transition-property: margin-left;
+        transition-duration: .2s;
+    }
+    [role=moon] .moon-layout-md .moon-navbar .navbar .swap-nav {
+        display: inline-block;
+    }
+    [role=moon] .moon-layout-sm .moon-body {
+        margin-left: 0;
+        transition-property: margin-left;
+        transition-duration: .2s;
+    }
+    [role=moon] .moon-layout-sm .moon-body {
+        margin-right: 0;
+        transition-property: margin-right;
+        transition-duration: .2s;
+    }
+    [role=moon] .moon-navbar .swap-nav {
+        display: inline-block;
+    }
+}
+
+@media( max-width: 770px ) {
+    [role=moon] .moon-navbar .navbar {
+        padding: 0 0 !important;
+    }
+    [role=moon] .moon-navbar .moon-navbar-body {
+        border-top: 1px solid #ddd;
+        padding: 15px 15px;
+    }
+    [role=moon] .moon-layout-lg .moon-navbar .moon-navbar-body .swap-aside,
+    [role=moon] .moon-layout-md .moon-navbar .moon-navbar-body .swap-aside {
+        display: none;
+    }
+    [role=moon] .moon-navbar  .navbar .swap-aside {
+        display: inline-block;
+    }
+    
+    [role=moon] .moon-body {
+        margin-right: 0;
+        transition-property: margin-right;
+        transition-duration: .2s;
+    }
+    [role=moon] .moon-aside {
+        right: -260px;
+        transition-property: right;
+        transition-duration: .2s;
+    }
+    [role=moon] .moon-aside.swap-show {
+        right: 0;
+        transition-property: right;
+        transition-duration: .2s;
+    }
+}

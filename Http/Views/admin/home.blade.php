@@ -1,0 +1,2 @@
+@extends($skin->path("admin"))
+

@@ -104,6 +104,7 @@ class es_DO {
          "words.cellphone"       => "Teléfono celular",
          "words.close"           => "Cerrar",
          "words.credential"      => "Credenciales",
+         'words.dashboard'       => "Escritorio de trabajo",
          "words.domain"          => "Dominio",
          "words.description"     => "Descripción",
          'words.domain'          => "Dominio",

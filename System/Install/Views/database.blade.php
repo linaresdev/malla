@@ -110,8 +110,8 @@
                     <a href="{{__url('env')}}" class="btn btn-sm btn-primary">
                         << {{__("Retroceder")}}
                     </a>
-                    <a href="{{__url('end')}}" class="btn btn-sm btn-success">
-                        {{__("Finalizar")}} >>
+                    <a href="{{__url('account')}}" class="btn btn-sm btn-success">
+                        {{__("Siguiente")}} >>
                     </a>
                 </article>
                 @endif

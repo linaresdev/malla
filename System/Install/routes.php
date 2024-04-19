@@ -10,6 +10,7 @@ use Malla\Install\Support\End;
 use Malla\Install\Support\Env;
 use Malla\Install\Support\Home;
 use Malla\Install\Support\Database;
+use Malla\Install\Support\Account;
 
 Route::get("/", function() {
     return view("install::index", (new Home)->data());
@@ -43,6 +44,11 @@ Route::prefix("database")->group(function($route)
          return (new Database)->migrate($opt);
      });
 });
+
+Route::get( "account", function() {
+    return view("install::account", (new Account)->data());
+});
+
 
 Route::get("end", function(){
     return (new End)->application();

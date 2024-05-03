@@ -25,7 +25,7 @@ class RouteServiceProvider extends ServiceProvider {
 
         $this->routes(function()
         {
-            Route::middleware("web")->namespace("Malla\Http\Controllers")->group(__path('{http}/Routes/app.php'));
+            Route::middleware(["web"])->namespace("Malla\Http\Controllers")->group(__path('{http}/Routes/app.php'));
         });
     }
 }

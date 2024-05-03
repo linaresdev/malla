@@ -15,7 +15,7 @@ return new class extends Migration
            
             $table->bigIncrements("id");
 
-            $table->string("mediatable_type", 255);
+            $table->string("mediable_type", 255);
             $table->unsignedBigInteger("mediable_id");
 
             $table->string("type", 20);

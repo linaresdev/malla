@@ -8,13 +8,7 @@
                 {{__("account.getmembership")}}
             </h4>
 
-            @if($errors->any())
-            <div class="rounded-1 bg-light px-3 py-2 mb-2">
-                @foreach($errors->all() as $error )
-                <p class="m-0 text-danger fs-6">{{$error}}</p>
-                @endforeach
-            </div>
-            @endif
+            {!! Alert::form($errors) !!}
 
             <form action="{{__url('{current}')}}" method="POST">
 

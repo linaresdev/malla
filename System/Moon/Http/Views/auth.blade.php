@@ -20,7 +20,8 @@
         <article class="{{$moon_container}}">
             <section class="{{$moon_wrapp}}">
                 <article class="bg-white rounded-1 shadow-sm mt-5 mx-auto p-3" style="max-width: 420px;">
-                    <h4>Login</h4>
+                    <h4>Login</h4>                    
+
                     <form action="#">
                         <div class="form-floating mb-2">
                             <input type="email"

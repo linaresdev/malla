@@ -72,4 +72,9 @@ class App extends Model
         return $this->morphToMany(\Malla\Model\Term::class, "taxonomies");
     }
 
+    ## QUERY
+    public function library( $slug ) {
+        return $this->where("type", "library")->where("slug", $slug)->first() ?? null;
+    }
+
 }

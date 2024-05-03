@@ -53,6 +53,7 @@ class Driver
         $app->create($this->app())->addMeta("info", $this->info()); 
         
         ## Library
+        (new \Malla\Alert\Driver)->install($app);
         (new \Malla\User\Driver)->install($app);
 
         ## Package

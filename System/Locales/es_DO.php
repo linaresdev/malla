@@ -33,7 +33,7 @@ class es_DO {
          "auth.2"                => "Cuenta suspendida de forma temporal",
          "auth.3"                => "Cuenta bloqueada",
          "auth.login"            => "Acceder",
-         "auth.bad"              => "Credenciales incorrectas",
+         "auth.bad.credentials"  => "Credenciales incorrectas",
 
          "auth.getmembership"    => "Solicitar membresía",
 
@@ -144,11 +144,11 @@ class es_DO {
          "words.state"           => "Estado",
          "words.write-to-us"     => "Excribenos",
 
-         "validator.email"       => "El campo :attribute no es valido",
-         "validator.unique"      => "El :attribute no esta disponible",
-         "validator.required"    => "El campo :attribute es requerido",
-         "validator.min"         => "El campo :attribute solo permite minimo :min caracteres",
-         "validator.same"        => "Los campos no coinciden",
+         "validation.email"       => "El campo :attribute no es valido",
+         "validation.unique"      => "El :attribute no esta disponible",
+         "validation.required"    => "El campo :attribute es requerido",
+         "validation.min"         => "El campo :attribute solo permite minimo :min caracteres",
+         "validation.same"        => "Los campos no coinciden",
 
          "send.update.password"  => "Enviar solicitud cambio de contraseña",
          "send.temporary.access" => "Enviar acceso temporal",

@@ -48,6 +48,10 @@ Route::prefix("database")->group(function($route)
 Route::get( "account", function() {
     return view("install::account", (new Account)->data());
 });
+Route::post( "account", function(Request $request) 
+{
+    return (new Account)->register($request);
+});
 
 
 Route::get("end", function(){

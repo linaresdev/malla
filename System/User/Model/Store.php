@@ -50,6 +50,10 @@ class Store extends User
         return $this->hasOne(Profiles::class);
     }
 
+    public function avatar() {
+        return $this->morphOne(\Malla\Model\Avatar::class, "avatable");
+    }
+
     public function groups() {
         return $this->morphToMany(\Malla\Model\Term::class, "taxonomies")->withPivot('created_at');
     }

@@ -7,6 +7,9 @@ namespace Malla\Http\Supports;
 *---------------------------------------------------------
 */
 
+
+use Malla\Alert\Facade\Alert;
+
 class Auth 
 {
     public function index()
@@ -16,8 +19,15 @@ class Auth
         return $data;
     }
 
-    public function logon()
+    public function logon( $request )
     {
+        if( ($gurad = auth("web"))->attempt($request->except("_token")) )
+        {
+            return redirect("/");
+        }
+        
+        Alert::success(__("auth.bad.credentials"));
+
         return back();
     }
 }

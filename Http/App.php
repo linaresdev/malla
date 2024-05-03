@@ -46,6 +46,8 @@ if( array_key_exists( $SKIN, ($themes = Malla::module("themes"))) )
     }
 }
 
+$this->assets[__path("{system}/Assets")] = __path("{cdn}");
+
 /*
 * ADMIN PUBLISHER */
 $this->publishes($this->assets, "malla");

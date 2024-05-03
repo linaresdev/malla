@@ -7,7 +7,9 @@ namespace Malla\Http\Controllers;
 *---------------------------------------------------------
 */
 
+use Illuminate\Http\Request;
 use Malla\Http\Supports\Auth;
+use Malla\Http\Requests\LoginRequest;
 
 class AuthController extends Controller
 {
@@ -20,7 +22,17 @@ class AuthController extends Controller
         return $this->render( "auth", $this->app->index() );
     }
 
-    public function logon() {
-        return $this->app->logon();
+    public function logon( LoginRequest $request )
+    {
+        return $this->app->logon( $request );
+    }
+
+    public function logout( Request $request )
+    {
+        $user = $request->user();
+
+        auth()->logout();
+
+        return redirect("/");
     }
 }

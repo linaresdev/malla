@@ -1,11 +1,23 @@
 body{
-    background: var(--light-grad-pink-blue, radial-gradient(ellipse at 40% 0%, #bf398910 0, transparent 75%), radial-gradient(ellipse at 60% 0%, #096bde10 0, transparent 75%));
-    background-size: cover;
-    height: 100vh;
+    /* background: var(--light-grad-pink-blue, radial-gradient(ellipse at 40% 0%, #bf398910 0, transparent 75%), radial-gradient(ellipse at 60% 0%, #096bde10 0, transparent 75%));
+    background-size: cover; */
+    background-color: #f3f3f3;
+    height: 100%;
+}
+
+.alert.alert-slow {
+    display: none;
 }
 
 [role=moon] {
     padding: 0 0;
+}
+[role=moon] .wrapp {
+    padding-top: 65px;
+}
+[role=moon] .wrapp-md {
+    margin-left: 12.5%;
+    width: 75%;
 }
 [role=moon] .moon-navbar {
     background-color: #fff;
@@ -154,6 +166,10 @@ body{
 
 /* MRDIA QUERY */
 @media( max-width: 1280px ) {
+    [role=moon] .wrapp-md {
+        margin-left: 5%;
+        width: 90%;
+    }
     [role=moon] .moon-layout-lg .navbar.moon-navbar {
         padding-right: 0px !important;
     }
@@ -188,6 +204,10 @@ body{
 
 @media( max-width: 990px )
 {
+    [role=moon] .wrapp-md {
+        margin-left: 0;
+        width: 100%;
+    }
     [role=moon] .moon-navbar .navbar {
         padding-left: 0px !important;
     }

@@ -13,6 +13,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 */
 
 use Malla\Core\Facade\Malla;
+use Malla\Alert\Facade\Alert;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -29,11 +30,11 @@ class Controller extends BaseController
     {
         $this->app  = $app;
         $app->user  = request()->user();
-
+       
         if( method_exists( $app, 'share' ) ) {
             $data = array_merge( $data, $app->share() );
-        } 
-
+        }
+        
         $this->share( $data );        
     }
 

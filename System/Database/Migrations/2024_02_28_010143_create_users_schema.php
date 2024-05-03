@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::table("users", function(Blueprint $table)
         {
             $table->string('type',20)->default("user")->after("id");
+            $table->string('name', 80)->nullable()->change();
             $table->string("firstname",30)->nullable()->after("type");    
             $table->string("lastname",30)->nullable()->after("firstname");
             $table->string("rnc",30)->nullable()->after("lastname");

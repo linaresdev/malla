@@ -18,7 +18,7 @@ class Driver {
             'license'       => 'Mit',
             'support'       => 'https://support.lc',
             'version'       => 'V-0.0',
-            'description'   => 'Librarías de navegacion'
+            'description'   => 'Librerías de navegación'
         ];
     }
 

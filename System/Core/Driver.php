@@ -55,6 +55,7 @@ class Driver
         ## Library
         (new \Malla\Alert\Driver)->install($app);
         (new \Malla\User\Driver)->install($app);
+        (new \Malla\Menu\Driver)->install( $app );
 
         ## Package
         (new \Malla\Driver)->install($app);

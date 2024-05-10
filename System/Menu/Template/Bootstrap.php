@@ -93,6 +93,18 @@ class Bootstrap
         return str_repeat( $inp, $exp + $this->index );
     }
 
+    public function line( $index )
+    {
+        $html  = $this->tab($index);
+        $html .= '<li class="'.$this->style("{item}").'">';
+        $html .= "\n";
+        $html .= '<hr class="dropdown-divider">';
+        $html .= $this->tab($index);
+        $html .= "</li>\n";
+
+        return $html;
+    }
+
     public function link( $item, $index=8 )
     {
         $icon   = $this->icon($item["icon"]);
@@ -113,7 +125,7 @@ class Bootstrap
 
     public function dropdownLink($item, $index=8)
     {
-        $html = $this->tab($index);
+        $html  = $this->tab($index);
         $html .= '<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown">';
         $html .= "\n";
         $html .= $this->tab($index+4);
@@ -127,18 +139,32 @@ class Bootstrap
         $html .= '<div class="'.$this->style('{n2}').'">';
         $html .= "\n";
 
-        foreach( $item["url"] as $key => $nav ):
-            $html .= $this->tab($index + 4);
-            $html .= '<a  href="'.$this->url($nav["url"]).'" class="'.$this->style("{droplink}").'">';
+        foreach( $item["dropdown"] as $key => $nav ):
+            $nav   = $nav->toArray();
             
-            $html .= "\n";
-            $html .= $this->tab($index+8);
-            $html .= $this->icon($nav["icon"]);
-            $html .= $this->label($nav["label"]);
-            $html .= "\n";
+            if( $nav["type"] == "line" ) {
+                $html .= $this->tab($index + 4);
+                $html .= '<div>';
+                $html .= '<hr class="dropdown-divider">';
+                $html .= '</div>';
+                $html .= "\n";
+            }
 
-            $html .= $this->tab($index + 4);
-            $html .= "</a>\n";
+            if( isSimpleLink($nav))
+            {
+                $html .= $this->tab($index + 4);
+                $html .= '<a  href="'.$this->url($nav["url"]).'" class="'.$this->style("{droplink}").'">';
+                
+                $html .= "\n";
+                $html .= $this->tab($index+8);
+                $html .= $this->icon($nav["icon"]);
+                $html .= $this->label($nav["label"]);
+                $html .= "\n";
+    
+                $html .= $this->tab($index + 4);
+                $html .= "</a>\n";
+            }
+
         endforeach;
 
         $html .= $this->tab($index);
@@ -149,43 +175,48 @@ class Bootstrap
 
     public function nav($index)
     {
-        $this->index = $index;       
-        
-        $html  = "\n";
-        $html .= $this->tab($index);
-        $html .= '<ul class="'.$this->style("{n1}").'">';
-        $html .= "\n";
-        
-        foreach( $this->menu->items as $K0 => $V0 )
-        {            
-           if( isSimpleLink( $V0 ) )
-           {
-                $html .= $this->tab($index+4);
-                $html .= '<li class="'.$this->style("{item}").'">';
-                $html .= "\n";
+        if( !empty($this->menu->items) ) {
 
-                $html .= $this->link( $V0, $index+8 );
+            $this->index = $index;       
+            
+            $html  = "\n";
+            $html .= $this->tab($index);
+            $html .= '<ul class="'.$this->style("{n1}").'">';
+            $html .= "\n";
+            
+            foreach( $this->menu->items as $K0 => $V0 )
+            {       
+                $data = $V0->toArray();                
 
-                $html .= $this->tab($index+4);
-                $html .= "</li>\n";
-           }
-
-           if( isDropdownLink($V0) )
-           {
-                $html .= $this->tab($index+4);
-                $html .= '<li class="'.$this->style("{dropitem}").'">';
-                $html .= "\n";
-
-                $html .= $this->dropdownLink( $V0, $index+8 );
-
-                $html .= $this->tab($index+4);
-                $html .= "</li>\n";
-           }
+                if( isSimpleLink( $data ) )
+                {
+                    $html .= $this->tab($index+4);
+                    $html .= '<li class="'.$this->style("{item}").'">';
+                    $html .= "\n";
+    
+                    $html .= $this->link( $V0->toArray(), $index+8 );
+    
+                    $html .= $this->tab($index+4);
+                    $html .= "</li>\n";
+                }
+               
+                if( isDropdownLink( $data ) )
+                { 
+                    $html .= $this->tab($index+4);
+                    $html .= '<li class="'.$this->style("{dropitem}").'">';
+                    $html .= "\n";
+    
+                    $html .= $this->dropdownLink( $data, $index+8 );
+    
+                    $html .= $this->tab($index+4);
+                    $html .= "</li>\n";
+                }
+            }
+    
+            $html .= $this->tab($index);
+            $html .= "<ul>\n";
+    
+            return $html;
         }
-
-        $html .= $this->tab($index);
-        $html .= "<ul>\n";
-
-        return $html;
     }
 }

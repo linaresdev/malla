@@ -62,4 +62,4 @@ Nav::save( \Malla\Http\Menu\Admin\UserNav::class );
 // });
 
 // dd(Nav::app());
-// dd(Nav::tag("admin-users-nav", 4));
+ dd(Nav::tag("admin-users-nav", 4));

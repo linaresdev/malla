@@ -78,9 +78,12 @@ class Nav
             $this->items[$index]    = $nav;
         }
         ## FROM CUSTOM KEY AND CLOSURE        
-        if( is_numeric($index) && ($nav instanceof \Closure ) )
-        {
-            $this->items[$index] = $nav( auth(), request() );
+        if( is_numeric($index) && ($nav instanceof \Closure ) ) {
+            $item = new Item();
+            
+            $nav( $item );
+
+            $this->items[$index] = $item;            
         }
         ## FROM DINAMIC KEY
         if( is_array($index) && !empty($index) )

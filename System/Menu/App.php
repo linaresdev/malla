@@ -5,16 +5,24 @@
 *---------------------------------------------------------
 */
 
+if( !function_exists("isLine") )
+{
+}
+
 if( !function_exists('isSimpleLink') )
 {
     function isSimpleLink( $data )
-    {
+    { 
         $ruls["type"] = ["required", "string", function($attrs, $value, \Closure $fail ){
             if( $value != "link") $fail("Error Type");
         }];
         
         #$ruls["icon"] = "required|string";
         $ruls["url"]  = "required|string";
+
+        $ruls["dropdown"] = [function($attrs, $value, \Closure $fail ){
+            if( !empty($value) ) $fail("Is Dropdown");
+        }];
 
         if( validator($data, $ruls)->fails() == true ) {
             return false;
@@ -27,15 +35,17 @@ if( !function_exists('isSimpleLink') )
 if( !function_exists("isDropdownLink") )
 {
     function isDropdownLink( $data )
-    {
+    { 
         $ruls["type"] = ["required", "string", function($attrs, $value, \Closure $fail ){
             if( $value != "link") $fail("Error Type");
         }];
         
         #$ruls["icon"] = "required|string";
-        $ruls["url"]  = "required|array";
+        $ruls["url"]  = "required|string";
 
-        if( validator($data, $ruls)->fails() == true ) {
+        $ruls["dropdown"] = ["array"];
+
+        if( validator($data, $ruls)->fails() == true ) {            
             return false;
         }
 

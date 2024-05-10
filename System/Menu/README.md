@@ -6,13 +6,13 @@ Librerías de navegación
 - [Buscar menú](#query)
 - [Actualizar menú](#update)
 - [Interactuando con la sesiones](#auth)
-- [Agregar menú a la vista](#view)
+- [Agregar menú a la vista](#views)
 
 ### Instalación
 Descargar vía [Composer](http://getcomposer.org/).
 
 ```
-    composer require linaresdev/navy
+    composer require linaresdev/menu
 ```
 
 Inicializar desde el proveedor de servicio
@@ -24,6 +24,8 @@ Inicializar desde el proveedor de servicio
     ## Facade
     "Nav" => \Malla\Menu\Faade\Nav::class,
 ```
+
+### SAVE
 
 Guardar menú etiquetado desde un arreglo
 
@@ -69,7 +71,7 @@ Guardar menú etiquetado desde un closure
 
 ### QUERY
 
-Buscar menú etiquetado
+Consulta menú etiquetado
 
 ```php
     Nav::whereTag($tag="users-nav-profile", function($nav) {
@@ -86,11 +88,16 @@ Buscar route menú registrado
 ```
 
 ### AUTH
-Interactuando con la sesiones
-
+Interactuando con la sesiones.
 Bloquear un ítem de un menú si no esta logueado.
 
 ```php
+
+    Nav::whereTag("admin/users*", function($nav) {
+
+        ## Restringir un item demenu por su indice
+        $nav->rejectItem(2);
+    });
 
     Nav::whereRoute("admin/users*", function($nav) {
 

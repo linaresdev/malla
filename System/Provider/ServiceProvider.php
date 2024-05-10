@@ -8,6 +8,7 @@ namespace Malla\Provider;
 *---------------------------------------------------------
 */
 
+use Malla\Menu\Facade\Nav;
 use Malla\Core\Facade\Malla;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Translation\Translator;
@@ -28,7 +29,7 @@ class ServiceProvider extends BaseProvider
         require_once(__path("{http}/App.php"));
     }
 
-    public function register() {}
+    public function register() { }
 
     public function getGrammars( $locale=null )
     {          

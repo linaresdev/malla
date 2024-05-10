@@ -25,22 +25,23 @@ class Driver {
     public function app() {
 
         return [
-            'type' => 'library',
-            'slug' => 'menu',
-            'driver' => \Malla\Menu\Driver::class,
-            'token' => NULL,
+            'type'      => 'library',
+            'slug'      => 'menu',
+            'driver'    => \Malla\Menu\Driver::class,
+            'token'     => NULL,
             'activated' => 1
         ];
     }
 
-    public function handler( $app )
+    public function providers() 
     {
-        $app->bind("Nav", function($app){
-            return new \Malla\Menu\Support\Nav($app);
-        });
+        return [
+            \Malla\Menu\Provider\MenuServiceProvider::class,
+        ];
     }
 
-    public function alias() { 
+    public function alias() 
+    { 
         return [
             "Nav" => \Malla\Menu\Facade\Nav::class,
         ]; 

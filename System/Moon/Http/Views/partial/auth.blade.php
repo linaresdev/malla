@@ -40,4 +40,6 @@
                 </div>
             </form>
         </article>
+
+      {!! Nav::tag("admin-users-nav", 4) !!}
     @endsection

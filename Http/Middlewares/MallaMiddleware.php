@@ -36,5 +36,4 @@ class MallaMiddleware {
 
         return $next( $request );
     }
-
 }

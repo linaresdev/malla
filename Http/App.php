@@ -51,3 +51,15 @@ $this->assets[__path("{system}/Assets")] = __path("{cdn}");
 /*
 * ADMIN PUBLISHER */
 $this->publishes($this->assets, "malla");
+
+Nav::container("main-menu");
+Nav::container("navbar");
+
+Nav::save( \Malla\Http\Menu\Admin\UserNav::class );
+
+// Nav::save("admin-nav", function( $nav ) {
+//     ## Crea tu menu
+// });
+
+// dd(Nav::app());
+// dd(Nav::tag("admin-users-nav", 4));

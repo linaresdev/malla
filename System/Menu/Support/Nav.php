@@ -9,9 +9,7 @@ namespace Malla\Menu\Support;
 
 class Nav 
 {
-    public $tag;
-
-    public $route;
+    public $type;
 
     public $description;
 
@@ -25,12 +23,13 @@ class Nav
         "style" => []
     ];
 
-    public $template;
+    public $template = "bootstrap";
 
     public $items;
 
-    public function add($key, $value) {
-        $this->{$key} = $value;
+    public function add($key, $value)
+    {         
+        $this->{$key} = $value;        
     }
 
     public function get($key=null)
@@ -83,7 +82,8 @@ class Nav
             
             $nav( $item );
 
-            $this->items[$index] = $item;            
+            $this->items[$index] = $item;   
+            ksort($this->items);      
         }
         ## FROM DINAMIC KEY
         if( is_array($index) && !empty($index) )

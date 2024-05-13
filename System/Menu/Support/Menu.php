@@ -48,7 +48,7 @@ class Menu
     }
 
     ## SAVE FROM STRING
-    public function saveFromString($menu)
+    public function saveFromClassString($menu)
     { 
         if( is_string($menu) ) {
             if( class_exists($menu) ){
@@ -58,13 +58,42 @@ class Menu
     }
 
     ## SAVE FROM ARRAY
-    public function saveFromArray( $menu )
-    {
+    public function saveFromArray( $menu ) {
+        $nav = new \Malla\Menu\Support\Nav();
+        foreach( $menu as $key => $value ) {
+            $nav->add($key, $value);
+        }
+
+       // dd($nav);
+    }
+
+    public function saveTagFromArray( $tag, $menu ) {
+        $this->taggs[$tag] = new \Malla\Menu\Support\Nav($menu);
     }
 
     ## SAVE FROM CLOSURE
-    public function saveFromClosure( $menu, $closure )
+    public function makeInstaceFromClosure( $type, $alia, $closure ) {
+        ($nav = new \Malla\Menu\Support\Nav())->add($type, $alia, $alia);
+        $closure($nav);
+
+        return $nav;
+    }
+    public function saveTagFromClosure( $alia, $closure )
     {
+        $nav = $this->makeInstaceFromClosure(
+            "tag", $alia, $closure
+        );
+        
+        $this->taggs[$nav->tag] = $nav;        
+    }
+
+    public function saveRouteFromClosure( $alia, $closure )
+    {
+        $nav = $this->makeInstaceFromClosure(
+            "route", $alia, $closure
+        );
+        
+        $this->routes[$nav->route] = $nav; 
     }
 
     ## SAVE FROM OBJECT
@@ -76,21 +105,17 @@ class Menu
 
             $menu->boot( $nav );
 
-            if( isset($nav->tag) )
-            {
-                if( !empty( ($tag = $nav->tag) ) )
-                {
+            if( isset($nav->tag) ) {
+                if( !empty( ($tag = $nav->tag) ) ) {
                     $this->taggs[$tag] = $nav;
                 }
             }
-            
-            if( isset($nav->route) )
-            {
-                if( !empty( ($route = $nav->route) ) )
-                {
+                
+            if( isset($nav->route) ) {
+                if( !empty( ($route = $nav->route) ) ) {
                     $this->routes[$route] = $nav;
                 }
-            }  
+            }   
         }
     }
 }

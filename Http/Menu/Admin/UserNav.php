@@ -47,9 +47,10 @@ class UserNav
             "{dropitem}"    => "nav-item dropdown",
             "{link}"        => "nav-link",
             "{droplink}"    => "dropdown-item",
+            "{header}"      => "px-2",
         ]);
 
-        $nav->addItem(30, function($item) {
+        $nav->addItem(34, function($item) {
             $item->add("type", "link");
             $item->add("icon", "mdi-account");
             $item->add("label", "{username}");
@@ -79,10 +80,16 @@ class UserNav
             });
 
             $item->addDropdown(2, function($item){
-                $item->add("type", "line");
+                $item->line();
+            });
+            $item->addDropdown(10, function($item) {
+                $item->text("Title dropdown");
+            });
+            $item->addDropdown(11, function($item){
+                $item->line();
             });
             
-            $item->addDropdown(3, function($item){
+            $item->addDropdown(20, function($item){
                 $item->add("type", "link");
                 $item->add("icon", "mdi-logout");
                 $item->add("label", "words.logout");

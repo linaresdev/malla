@@ -138,13 +138,22 @@ class Bootstrap
         $html .= $this->tab($index);
         $html .= '<div class="'.$this->style('{n2}').'">';
         $html .= "\n";
-
+        
         foreach( $item["dropdown"] as $key => $nav ):
-            $nav   = $nav->toArray();
-            
+            $nav   = $nav->toArray();            
+
+            if( $nav["type"] == "text" ) {
+                
+                $html .= $this->tab($index + 4);
+                $html .= '<div class="'.$this->style("{header}").'">';
+                $html .= $nav["text"];
+                $html .= '</div>';
+                $html .= "\n";
+            }
+
             if( $nav["type"] == "line" ) {
                 $html .= $this->tab($index + 4);
-                $html .= '<div>';
+                $html .= '<div class="'.$this->style("{line}").'">';
                 $html .= '<hr class="dropdown-divider">';
                 $html .= '</div>';
                 $html .= "\n";

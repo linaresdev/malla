@@ -42,4 +42,5 @@
         </article>
 
       {!! Nav::tag("admin-users-nav", 4) !!}
+      {!! Nav::tag("users-profiler", 4) !!}
     @endsection

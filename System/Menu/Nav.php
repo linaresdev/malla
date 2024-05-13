@@ -10,26 +10,48 @@ namespace Malla\Menu;
 use Malla\Menu\Support\Menu;
 
 class Nav extends Menu 
-{   
-
-    
-    public function tag( $slug, $index=12 )
+{     
+    public function tag( $slug=null, $arg=null )
     {
-        if( array_key_exists($slug, $this->taggs) )
-        {
-            $menu = $this->taggs[$slug];
-            $skin = $this->template[$menu->get("template")];
-            
-            if( class_exists($skin) )
-            { 
-                return (new $skin($menu))->nav($index);
+        if( !empty($slug) )
+        {   
+            ## Si $slug es una clase string y $arg es null : Registro de menu
+
+            ## Si $slug es una matrix y $arg es numerico: Registro de menu etiquetado
+            if( is_string($slug) && is_array($arg) ) {
+                return $this->saveTagFromArray( $slug, $arg );
+            }
+
+            ## Si $slug es un string y $arg es un closure : Registro de menu etiquetado
+            if( is_string($slug) && ($arg instanceof \Closure) ) {  
+                return $this->saveTagFromClosure( $slug, $arg );
+            }
+
+            ## Si $arg es numerico: Solicitud de menu etiquetado
+            if( is_string($slug) && is_numeric($arg) )
+            {               
+                if( array_key_exists($slug, $this->taggs) )
+                {
+                    $menu = $this->taggs[$slug];
+                    $skin = $this->template[$menu->get("template")];
+                    
+                    if( class_exists($skin) ) { 
+                        return (new $skin($menu))->nav($arg);
+                    }
+                }
             }
         }
     }
 
-    public function route( $slug, $index=12 ){}
-
-    
+    public function route( $slug, $arg=12 ) { 
+        if( !empty($slug) )
+        {
+            ## Si $slug es un string y $arg es un closure : Registro de route menu 
+            if( is_string($slug) && ($arg instanceof \Closure) ) {  
+                return $this->saveRouteFromClosure( $slug, $arg );
+            }
+        }
+    }    
 
     public function save( $menu=null, $objs=null )
     {
@@ -37,14 +59,14 @@ class Nav extends Menu
         {
             ## STRING CLASS
             if( is_string($menu) && is_null($objs) ) {
-                return $this->saveFromString($menu);
+                return $this->saveFromClassString($menu);
             }
             ## ARRAY
-            if( is_array($menu) ) { 
+            if( is_array($menu) ) {
                 return $this->saveFromArray($menu);
             }
             ## CLOSURE
-            if( is_string($menu) && ($objs instanceof \Closure) ) { 
+            if( is_string($menu) && ($objs instanceof \Closure) ) {  
                 return $this->saveFromClosure( $menu, $objs );
             }
             ## OBJECT

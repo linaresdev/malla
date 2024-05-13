@@ -15,6 +15,8 @@ class Item
     public $url;
     public $dropdown;
     public $text;
+    public $paragraph;
+    
 
     public function toArray()  {
         return (array) $this;
@@ -27,6 +29,20 @@ class Item
         }
     }
 
+    public function line() {
+        $this->add("type", "line");
+    }
+
+    public function text( $data ) {
+        $this->add("type", "text");
+        $this->text = $data;
+    }
+
+    public function header($title) {
+        $this->add("type", "text");
+        $this->text = $title;
+    }
+
     public function addDropdown( $key=0, $nav=null )
     {
         ## FROM CUSTOM KEY AND CLOSURE        
@@ -35,6 +51,8 @@ class Item
             $item = new Item();
             $nav( $item );
             $this->dropdown[$key] = $item;
+
+            ksort($this->dropdown);
         }
     }
 }

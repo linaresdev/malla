@@ -21,9 +21,12 @@ class Container
     }
 
     public function has($name) {
-        if( array_key_exists($name, $this->store) )
-        {
+        if( array_key_exists($name, $this->store) ) {
 
         }
+    }
+
+    public function addStore( $key=null, $nav=null ) {
+        $this->store[$key][] = $nav->get($key);
     }
 }

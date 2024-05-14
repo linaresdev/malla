@@ -10,12 +10,11 @@ namespace Malla\Menu\Support;
 class Item
 {
     public $type;
-    public $icon;
-    public $label;
-    public $url;
-    public $dropdown;
-    public $text;
-    public $paragraph;
+    // public $icon;
+    // public $label;
+    // public $url;
+    // public $dropdown;
+    // public $paragraph;
     
 
     public function toArray()  {
@@ -35,7 +34,7 @@ class Item
 
     public function text( $data ) {
         $this->add("type", "text");
-        $this->text = $data;
+        $this->label = $data;
     }
 
     public function header($title) {

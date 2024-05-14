@@ -47,6 +47,16 @@ class Menu
         }
     }
 
+    public function saveInGroupFrom( $type, $nav ) 
+    {
+        if( is_object($nav) ) 
+        {
+            foreach( $nav->get("groups") as $group ) {
+                $this->containers[$group]->addStore($type, $nav);
+            }
+        }
+    }
+
     ## SAVE FROM STRING
     public function saveFromClassString($menu)
     { 
@@ -58,18 +68,24 @@ class Menu
     }
 
     ## SAVE FROM ARRAY
-    public function saveFromArray( $menu ) {
-        $nav = new \Malla\Menu\Support\Nav();
-        foreach( $menu as $key => $value ) {
-            $nav->add($key, $value);
+    public function saveFromArray( $menu ) 
+    {
+        $nav = (new \Malla\Menu\Support\LoadFromArray($menu))->get("nav");
+
+        if( !empty($nav->tag) ) {
+            $this->taggs[$nav->tag] = $nav;            
+            $this->saveInGroupFrom("tag", $nav);
         }
 
-       // dd($nav);
+        if( !empty($nav->route) ) {
+            $this->routes[$nav->route] = $nav;
+            $this->saveInGroupFrom("route", $nav);
+        }
     }
 
-    public function saveTagFromArray( $tag, $menu ) {
-        $this->taggs[$tag] = new \Malla\Menu\Support\Nav($menu);
-    }
+    // public function saveTagFromArray( $tag, $menu ) {        
+    //     $this->taggs[$tag] = new \Malla\Menu\Support\Nav($menu);
+    // }
 
     ## SAVE FROM CLOSURE
     public function makeInstaceFromClosure( $type, $alia, $closure ) {
@@ -78,6 +94,7 @@ class Menu
 
         return $nav;
     }
+
     public function saveTagFromClosure( $alia, $closure )
     {
         $nav = $this->makeInstaceFromClosure(

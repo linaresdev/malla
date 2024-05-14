@@ -9,7 +9,11 @@ namespace Malla\Menu\Support;
 
 class Nav 
 {
-    public $type;
+    public $tag;
+
+    public $route;
+
+    public $groups;
 
     public $description;
 
@@ -40,6 +44,12 @@ class Nav
         }
     }
 
+    public function addFilter($key, $data) {
+        foreach($data as $k => $value ) {
+            $this->filters[$key][$k] = $value;
+        }
+    }
+
     public function iconFilter($index, $data=[])
     {
         //$this->filters["icons"][$index] = array_merge($this->filters["icons"][$index], $data);
@@ -59,12 +69,10 @@ class Nav
 
     public function addText($text)
     {
-
     }
 
     public function addLine()
     {
-
     }
 
     public function addItem($index, $nav=null)

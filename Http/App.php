@@ -52,30 +52,45 @@ $this->assets[__path("{system}/Assets")] = __path("{cdn}");
 * ADMIN PUBLISHER */
 $this->publishes($this->assets, "malla");
 
-Nav::container("main-menu");
-Nav::container("navbar");
+Nav::container("Main Navbar");
+Nav::container("Nav area 0");
 
+## FROM ARRAY
 Nav::save([
-    "type" => ["tag"],
-    "description" => "Menu de usuarios",
-    "filters" => [        
-        "style" => [
-            "{n1}"          => "navbar-nav bg-white my-3 flex-column rounded-1 px-3",
-            "{n2}"          => "dropdown-menu",
-            "{item}"        => "nav-item",
-            "{dropitem}"    => "nav-item dropdown",
-            "{link}"        => "nav-link",
-            "{droplink}"    => "dropdown-item",
-            "{header}"      => "px-2",
-        ]
-    ],
-    "items" => [
+    "tag"           => "user-profiler",
+    "route"         => "users/profiler/*",
+    "groups"        => ["nav-area-0"],
+    "description"   => "Menu de usuarios",
+    "filters"       => [],
+    "items"         => [
         [
+            "type"   => "text",
+            "label"  => "Title Nav",
+        ],
+        ["type" => "line" ],
+        [
+            "type"  => "link",
             "icon"  => "mdi-account-circle",
             "label" => "Users",
             "url"   => "users/profiler",
+            "dropdown" => [
+                [
+                    "type"   => "text",
+                    "label"  => "Dropdown Menu",
+                ],
+                [
+                    "type"   => "line"
+                ],
+                [
+                    "type"  => "link",
+                    "icon"  => "mdi-warning",
+                    "label" => "Auth",
+                    "url"   => "users/security",
+                ]
+            ]
         ],
         [
+            "type"  => "link",
             "icon"  => "mdi-warning",
             "label" => "Security",
             "url"   => "users/security",
@@ -124,5 +139,7 @@ Nav::save([
 //     ## Crea tu menu
 // });
 
- //dd(Nav::app());
+// dd(Nav::app());
  //dd(Nav::tag("admin-users-nav", 4));
+
+//dd(Nav::tag("user-profiler", 4));

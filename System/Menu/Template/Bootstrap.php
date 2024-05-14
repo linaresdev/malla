@@ -13,8 +13,27 @@ class Bootstrap
 
     protected $menu;
 
-    public function __construct($menu) {
+    protected $filters = [
+        "style" => [
+            "{n1}"          => "navbar-nav bg-white my-3 flex-column rounded-1 px-0",
+            "{n2}"          => "dropdown-menu",
+            "{item}"        => "nav-item",
+            "{dropitem}"    => "nav-item dropdown",
+            "{link}"        => "nav-link px-3",
+            "{toggle}"      => "nav-link px-3 dropdown-toggle",
+            "{droplink}"    => "dropdown-item",
+            "{header}"      => "px-2",
+            "{line}"        => "border-bottom my-1",
+        ]
+    ];
+
+    public function __construct($menu)
+    {
         $this->menu = $menu;
+
+        foreach($this->filters as $key => $filter ) {
+            $this->menu->addFilter($key, $filter);
+        }
     }
 
     public function icon($slug)
@@ -93,24 +112,24 @@ class Bootstrap
         return str_repeat( $inp, $exp + $this->index );
     }
 
-    public function line( $index )
-    {
-        $html  = $this->tab($index);
-        $html .= '<li class="'.$this->style("{item}").'">';
-        $html .= "\n";
-        $html .= '<hr class="dropdown-divider">';
-        $html .= $this->tab($index);
-        $html .= "</li>\n";
+    // public function line( $index )
+    // {
+    //     $html  = $this->tab($index);
+    //     $html .= '<li class="'.$this->style("{line}").'">';
+    //     // $html .= "\n";
+    //     // $html .= '<hr class="dropdown-divider">';
+    //     // $html .= $this->tab($index);
+    //     $html .= "</li>\n";
 
-        return $html;
-    }
+    //     return $html;
+    // }
 
     public function link( $item, $index=8 )
     {
         $icon   = $this->icon($item["icon"]);
         $label  = $this->label($item["label"]);
         $url    = $this->url($item["url"]);
-        $style  = $this->style("nav-link");
+        $style  = $this->style("{link}");
         $style  = $this->onLink($style, $url);
         
         $html  = $this->tab($index);
@@ -124,9 +143,9 @@ class Bootstrap
     }
 
     public function dropdownLink($item, $index=8)
-    {
+    { 
         $html  = $this->tab($index);
-        $html .= '<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown">';
+        $html .= '<a href="#" class="'.$this->style('{toggle}').'" data-toggle="dropdown" data-bs-toggle="dropdown">';
         $html .= "\n";
         $html .= $this->tab($index+4);
         $html .= $this->icon($item["icon"]);
@@ -137,16 +156,16 @@ class Bootstrap
 
         $html .= $this->tab($index);
         $html .= '<div class="'.$this->style('{n2}').'">';
-        $html .= "\n";
+        $html .= "\n";        
         
         foreach( $item["dropdown"] as $key => $nav ):
             $nav   = $nav->toArray();            
-
+            
             if( $nav["type"] == "text" ) {
                 
                 $html .= $this->tab($index + 4);
                 $html .= '<div class="'.$this->style("{header}").'">';
-                $html .= $nav["text"];
+                $html .= $nav["label"];
                 $html .= '</div>';
                 $html .= "\n";
             }
@@ -154,7 +173,6 @@ class Bootstrap
             if( $nav["type"] == "line" ) {
                 $html .= $this->tab($index + 4);
                 $html .= '<div class="'.$this->style("{line}").'">';
-                $html .= '<hr class="dropdown-divider">';
                 $html .= '</div>';
                 $html .= "\n";
             }
@@ -175,6 +193,7 @@ class Bootstrap
             }
 
         endforeach;
+    
 
         $html .= $this->tab($index);
         $html .= "</div>\n";
@@ -185,7 +204,7 @@ class Bootstrap
     public function nav($index)
     {
         if( !empty($this->menu->items) ) {
-
+            
             $this->index = $index;       
             
             $html  = "\n";
@@ -195,10 +214,29 @@ class Bootstrap
             
             foreach( $this->menu->items as $K0 => $V0 )
             {       
-                $data = $V0->toArray();                
+                $data = $V0->toArray(); 
+                
+                if( isLine($data) ) {
+                    $html .= $this->tab($index+4);
+                    $html .= '<li class="'.$this->style("{line}").'">';
+                    $html .= "</li>\n";
+                }
 
+                if( isText($data) ) {
+                    $html .= $this->tab($index+4);
+                    $html .= '<li class="'.$this->style("{item}").'">';
+                    $html .= "\n";
+                    $html .= $this->tab($index+8);
+                    $html .= '<div class="'.$this->style("{link}").'">';
+                    $html .= $this->label($data["label"]); 
+                    $html .= "</a>\n";
+                    $html .= "\n";
+                    $html .= $this->tab($index+4);
+                    $html .= "</li>\n";
+                }
+                
                 if( isSimpleLink( $data ) )
-                {
+                { 
                     $html .= $this->tab($index+4);
                     $html .= '<li class="'.$this->style("{item}").'">';
                     $html .= "\n";
@@ -210,11 +248,11 @@ class Bootstrap
                 }
                
                 if( isDropdownLink( $data ) )
-                { 
+                {  
                     $html .= $this->tab($index+4);
                     $html .= '<li class="'.$this->style("{dropitem}").'">';
                     $html .= "\n";
-    
+                    
                     $html .= $this->dropdownLink( $data, $index+8 );
     
                     $html .= $this->tab($index+4);

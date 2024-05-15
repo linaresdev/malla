@@ -61,41 +61,9 @@ Nav::save([
     "route"         => "users/profiler/*",
     "groups"        => ["nav-area-0"],
     "description"   => "Menu de usuarios",
+    "template"      => "bootstrap",
     "filters"       => [],
-    "items"         => [
-        [
-            "type"   => "text",
-            "label"  => "Title Nav",
-        ],
-        ["type" => "line" ],
-        [
-            "type"  => "link",
-            "icon"  => "mdi-account-circle",
-            "label" => "Users",
-            "url"   => "users/profiler",
-            "dropdown" => [
-                [
-                    "type"   => "text",
-                    "label"  => "Dropdown Menu",
-                ],
-                [
-                    "type"   => "line"
-                ],
-                [
-                    "type"  => "link",
-                    "icon"  => "mdi-warning",
-                    "label" => "Auth",
-                    "url"   => "users/security",
-                ]
-            ]
-        ],
-        [
-            "type"  => "link",
-            "icon"  => "mdi-warning",
-            "label" => "Security",
-            "url"   => "users/security",
-        ]
-    ]
+    "items"         => []
 ]);
 
 // Nav::tag("users-priflers", [

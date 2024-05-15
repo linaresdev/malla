@@ -23,7 +23,7 @@ class Bootstrap
             "{toggle}"      => "nav-link px-3 dropdown-toggle",
             "{droplink}"    => "dropdown-item",
             "{header}"      => "px-2",
-            "{line}"        => "border-bottom my-1",
+            "{line}"        => "border-bottom my-0",
         ]
     ];
 

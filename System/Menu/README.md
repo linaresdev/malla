@@ -34,7 +34,7 @@ Guardar menú etiquetado desde un arreglo
         "tag"           => "users-nav-profile",
         "route"         => "profiler*",
         "description"   => "Public Nav 0",
-        "skin"          => \Malla\Template\BS5::class,
+        "template"      => "bootstrap",
         "filters"       => [],
         "items"         => [],
     ]);
@@ -52,20 +52,62 @@ Guardar menú etiquetado desde un closure
 
 ```php
     Nav::save(function($nav) {
-
+        ## HEADER
         $nav->add("tag", "users-profile");
         $nav->add("route", "admin/users*");
         $nav->add("description", "Area nav 0");
 
-        $nav->addFilters("style", [
+        ## FILTROS DE ESTILOS
+        $nav->styleFilter([
             ":node0" => "nav flex-column"
         ]);
 
-        $nav->addItem([
-            "icon"   => "mdi mdi-account",
-            "label"  => "words.users",
-            "url"    => "profiler/usrID"
+        ## FILTROS DE LOS TEXTOS O ETIQUETAS
+        $nav->labelFilter("match", [   
+            "{username}" => 'Ramon Anulfo Linares'         
         ]);
+        $nav->labelFilter("dress", [   
+            "{username}" => '<span class="text-toggle">{username}</span>'         
+        ]); 
+
+        ## AGREGAR UN HEADER
+        $nav->addItem(0, function($item) {
+            $item->add("type", "text");
+            $item->add("label", "Title menu");
+        });
+
+        ## AGREAR UNA LINEA
+        $nav->addItem(1, function($item) {
+            $item->add("type", "line");
+        });
+
+        ## AGREAGAR UN LINK SIMPLE AL MENU
+        ## $nav->addItem($key, $closure);
+        ## $key es ek numero de posicion del item 
+        ## Closure es el constructor
+
+        $nav->addItem(2, function($item) {
+            $item->add("type", "link");
+            $item->add("icon", "mdi-account");
+            $item->add("label", "update.password");
+            $item->add("url", "profiler/{usrID}/update/password");
+        });
+
+        ## AGREAGAR UN LINK DROPDOWN
+        $nav->addItem(3, function($item) {
+            $item->add("type", "link");
+            $item->add("icon", "mdi-account");
+            $item->add("label", "update.password");
+            $item->add("url", "profiler/{usrID}/update/password");
+
+            $item->addDropdown(0, function($item){
+                $item->add("type", "link");
+                $item->add("icon", "mdi-bell");
+                $item->add("label", "words.blog");
+                $item->add("url", "blog");
+            });
+        });
+
     });
 ```
 

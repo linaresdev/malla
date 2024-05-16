@@ -38,8 +38,7 @@ class Nav
 
     public function get($key=null)
     {
-        if( isset($this->{$key}) )
-        {
+        if( isset($this->{$key}) ) {
             return $this->{$key};
         }
     }
@@ -75,17 +74,27 @@ class Nav
     {
     }
 
+    public function item($key=null, $closure=null)
+    {
+        if( is_numeric($key) && ($closure instanceof \Closure ) )
+        {
+            if( array_key_exists($key, $this->items) )
+            {
+                $closure( ($nav = $this->items[$key]) );
+            }            
+        }
+    }
+
     public function addItem($index, $nav=null)
     {
         ## FROM CUSTOM KEY
-        if( (is_numeric($index) && !empty($nav)) && is_array($nav) )
-        {
-            
+        if( (is_numeric($index) && !empty($nav)) && is_array($nav) ) {            
             $nav["type"]            = "link";
             $this->items[$index]    = $nav;
         }
         ## FROM CUSTOM KEY AND CLOSURE        
-        if( is_numeric($index) && ($nav instanceof \Closure ) ) {
+        if( is_numeric($index) && ($nav instanceof \Closure ) )
+        {
             $item = new Item();
             
             $nav( $item );
@@ -94,9 +103,22 @@ class Nav
             ksort($this->items);      
         }
         ## FROM DINAMIC KEY
-        if( is_array($index) && !empty($index) )
-        {
+        if( is_array($index) && !empty($index) ) {
             $this->items[] = $index;
+        }
+    }
+
+    public function updateItem( $key, $item=null ) {
+        if( array_key_exists($key, $this->items) && ($item instanceof \Closure ) ) {
+            $data = $this->items[$key];
+            $item($data);
+
+        }
+    }
+
+    public function deny($key=null) {
+        if( array_key_exists($key, $this->items) ) {
+            $this->items[$key]->update(["type" => "lock"]);
         }
     }
 }

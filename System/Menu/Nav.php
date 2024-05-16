@@ -18,24 +18,26 @@ class Nav extends Menu
             ## Si $slug es una clase string y $arg es null : Registro de menu
 
             ## Si $slug es una matrix y $arg es numerico: Registro de menu etiquetado
-            if( is_string($slug) && is_array($arg) ) {
-                return $this->saveTagFromArray( $slug, $arg );
-            }
+            // if( is_string($slug) && is_array($arg) ) {
+            //     return $this->saveTagFromArray( $slug, $arg );
+            // }
 
             ## Si $slug es un string y $arg es un closure : Registro de menu etiquetado
             if( is_string($slug) && ($arg instanceof \Closure) ) {  
-                return $this->saveTagFromClosure( $slug, $arg );
+                if( array_key_exists($slug, $this->taggs) ) {                    
+                    $arg( ($nav = $this->taggs[$slug]) );
+                }
             }
 
             ## Si $arg es numerico: Solicitud de menu etiquetado
             if( is_string($slug) && is_numeric($arg) )
             {               
                 if( array_key_exists($slug, $this->taggs) )
-                {
+                { 
                     $menu = $this->taggs[$slug];
                     $skin = $this->template[$menu->get("template")];
-                    
-                    if( class_exists($skin) ) { 
+                   
+                    if( class_exists($skin) ) {
                         return (new $skin($menu))->nav($arg);
                     }
                 }

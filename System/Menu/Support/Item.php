@@ -28,6 +28,8 @@ class Item
         }
     }
 
+    
+
     public function line() {
         $this->add("type", "line");
     }
@@ -52,6 +54,37 @@ class Item
             $this->dropdown[$key] = $item;
 
             ksort($this->dropdown);
+        }
+    }
+
+    public function update( $key=null, $value=null ) 
+    {
+        if( !empty($key) )
+        {
+            if( is_array($key) ) {
+                foreach( $key as $k => $v ) {
+                    $this->{$k} = $v;
+                } 
+            }
+            if( (is_numeric($key) && is_array($value)) && isset($this->dropdown) )
+            {
+                if( array_key_exists($key, $this->dropdown) ) {
+                    $this->dropdown[$key]->update($value);
+                }
+            }
+        }
+    }
+
+    public function locked($key=null) 
+    {
+        if( is_null($key) ){
+            $this->update(["type" => "locked"]);
+        }
+        if(is_numeric($key))
+        {
+            if( array_key_exists($key, $this->dropdown) ) {
+                $this->dropdown[$key]->update(["type" => "locked"]);
+            }
         }
     }
 }

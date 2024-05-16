@@ -30,7 +30,7 @@ class Bootstrap
     public function __construct($menu)
     {
         $this->menu = $menu;
-
+        
         foreach($this->filters as $key => $filter ) {
             $this->menu->addFilter($key, $filter);
         }

@@ -74,7 +74,8 @@ Nav::save([
 //     "items" => [
 //     ]
 // ]);
-//Nav::save( \Malla\Http\Menu\Admin\UserNav::class );
+
+Nav::save( \Malla\Http\Menu\Admin\UserNav::class );
 
 //Nav::route("users/profiler/*", function( $nav ) {
     //$nav->add("route", "users/profler/*");
@@ -107,7 +108,28 @@ Nav::save([
 //     ## Crea tu menu
 // });
 
-// dd(Nav::app());
+Nav::tag("admin-users-nav", function($nav) 
+{
+    // $nav->item(33, function($item){
+    //     $item->locked();
+    //     $item->locked($key=2);
+    // });
+
+    $nav->item( 33, function( $item ) 
+    {
+        $item->update([
+            "icon"  => "mdi-warning",
+            "label" => "Warning"
+        ]);
+
+        $item->update(1, [
+            "icon" => "mdi-web"
+        ]);
+    });
+});
+
+//dd(Nav::app());
+
  //dd(Nav::tag("admin-users-nav", 4));
 
 //dd(Nav::tag("user-profiler", 4));

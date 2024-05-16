@@ -116,7 +116,7 @@ Guardar menú etiquetado desde un closure
 Consulta menú etiquetado
 
 ```php
-    Nav::whereTag($tag="users-nav-profile", function($nav) {
+    Nav::tag($tag="users-nav-profile", function($nav) {
         //
     });
 ```
@@ -124,7 +124,7 @@ Consulta menú etiquetado
 Buscar route menú registrado
 
 ```php
-    Nav::whereRoute($route="admin/users*", function($nav) {
+    Nav::route($route="admin/users*", function($nav) {
         //
     });
 ```
@@ -135,16 +135,25 @@ Bloquear un ítem de un menú si no esta logueado.
 
 ```php
 
-    Nav::whereTag("admin/users*", function($nav) {
+    Nav::tag("admin-users", function($nav) {
+        $nav->item($key=3, function($item) {
+            ## Denegar link
+            $nav->locked();
 
-        ## Restringir un item demenu por su indice
-        $nav->rejectItem(2);
+            ## Bloquear sub link
+            $nav->locked(5);
+        })
     });
 
-    Nav::whereRoute("admin/users*", function($nav) {
+    Nav::route("admin/users*", function($nav) {
+        
+        $nav->item($key=3, function($item) {
+            ## Denegar link
+            $nav->locked();
 
-        ## Restringir un item demenu por su indice
-        $nav->rejectItem(2);
+            ## Bloquear sub link
+            $nav->locked(5);
+        });
     });
 
 ```
@@ -153,15 +162,24 @@ Bloquear un ítem de un menú si no esta logueado.
 Actualizar un item de menú conociendo su indice
 
 ```php
+    Nav::tag("admin-users", function($nav) {
+        $nav->item($key=3, function($item) {
+            ## Denegar link
+            $nav->update($data=[]);
 
-    Nav::whereRoute("admin/users*", function($nav){
-        ## Agregar un nuevo item
-        $nav->addItem($itemData=[]);
+            ## Bloquear sub link
+            $nav->update($key=5, $data=[]);
+        });      
+    });
 
-        ## Actualizar un item
-        $nav->updateItem($index=0, $itemData=[]);
+    Nav::route("admin/users*", function($nav) {
+        $nav->item($key=3, function($item) {
+            ## Denegar link
+            $nav->update($data=[]);
 
-        
+            ## Bloquear sub link
+            $nav->update($key=5, $data=[]);
+        });      
     });
 ```
 
@@ -175,5 +193,5 @@ Agregar un menú etiquetado a la vista
 Agregar un route menú a la vista
 ```php
 
-    {!! Nav::route($route="admin/users", $ident=12) !!}
+    {!! Nav::route( $ident=12 ) !!}
 ```

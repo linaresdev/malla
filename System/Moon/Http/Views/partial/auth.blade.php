@@ -41,6 +41,6 @@
             </form>
         </article>
 
-      {!! Nav::tag("admin-users-nav", 4) !!}
-      {!! Nav::tag("user-profiler", 4) !!}
+      {!! Nav::route(4) !!}
+      {!! Nav::routes("nav-area-0", 4) !!}
     @endsection

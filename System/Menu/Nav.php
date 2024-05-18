@@ -14,14 +14,7 @@ class Nav extends Menu
     public function tag( $slug=null, $arg=null )
     {
         if( !empty($slug) )
-        {   
-            ## Si $slug es una clase string y $arg es null : Registro de menu
-
-            ## Si $slug es una matrix y $arg es numerico: Registro de menu etiquetado
-            // if( is_string($slug) && is_array($arg) ) {
-            //     return $this->saveTagFromArray( $slug, $arg );
-            // }
-
+        { 
             ## Si $slug es un string y $arg es un closure : Registro de menu etiquetado
             if( is_string($slug) && ($arg instanceof \Closure) ) {  
                 if( array_key_exists($slug, $this->taggs) ) {                    
@@ -45,15 +38,73 @@ class Nav extends Menu
         }
     }
 
-    public function route( $slug, $arg=12 ) { 
-        if( !empty($slug) )
+    public  function taggs( $slug=null, $intex=4 )
+    {
+        $collect = null;
+
+        if( array_key_exists( $slug, $this->containers ) ) 
         {
-            ## Si $slug es un string y $arg es un closure : Registro de route menu 
-            if( is_string($slug) && ($arg instanceof \Closure) ) {  
-                return $this->saveRouteFromClosure( $slug, $arg );
+            if( !empty( ($taggs = $this->containers[$slug]->navs("taggs")) ) ) {
+               
+                foreach( $taggs as $tag ) {
+                    dd($this->tag($slug, 4));
+                    $collect .= $this->tag($slug, 4);
+                }
             }
         }
-    }    
+
+        return $collect;
+    }
+
+    public function route( $slug=null, $arg=null ) { 
+        if( !empty($slug) )
+        {
+            ## Si $arg es numerico: Solicitud de menu etiquetado
+            if( is_numeric($slug) )
+            { 
+                foreach( $this->routes as $route => $nav ) {
+                    if( \Str::is( $route, request()->path() ) ) {
+                        $skin = $this->template[$nav->get("template")];
+                    
+                        if( class_exists($skin) ) {
+                            return (new $skin($nav))->nav($arg);
+                        }
+                    }
+                }
+            }
+
+            if( is_string($slug) && ($arg instanceof \Closure) ) {  
+                if( array_key_exists($slug, $this->routes) ) {                    
+                    $arg( ($nav = $this->routes[$slug]) );
+                }
+            }            
+        }
+    } 
+    
+    public  function routes($slug=null, $index=4)
+    {
+        if( array_key_exists($slug, $this->containers) )
+        {
+            if( !empty( ($routes = $this->containers[$slug]->routes()) ) )
+            {
+                $navigator = null;
+
+                foreach( $routes as $route ) {
+                    if( \Str::is($route, request()->path()) )
+                    {
+                        $nav    = $this->routes[$route];
+                        $skin   = $this->template[$nav->get("template")];
+                    
+                        if( class_exists($skin) ) {
+                            $navigator .=  (new $skin($nav))->nav($index);
+                        } 
+                    }
+                }
+
+                return $navigator;
+            }
+        }
+    }
 
     public function save( $menu=null, $objs=null )
     {

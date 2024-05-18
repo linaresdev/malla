@@ -19,8 +19,7 @@ class Menu
         "bootstrap"         => \Malla\Menu\Template\Bootstrap::class,
     ];
 
-    public function app() 
-    {
+    public function app() {
         return $this;
     }
 
@@ -47,15 +46,15 @@ class Menu
         }
     }
 
-    public function saveInGroupFrom( $type, $nav ) 
-    {
-        if( is_object($nav) ) 
-        {
-            foreach( $nav->get("groups") as $group ) {
-                $this->containers[$group]->addStore($type, $nav);
-            }
-        }
-    }
+    // public function saveInGroupFrom( $type, $nav ) 
+    // {
+    //     if( is_object($nav) ) 
+    //     {
+    //         foreach( $nav->get("groups") as $group ) {
+    //             $this->containers[$group]->addStore($type, $nav);
+    //         }
+    //     }
+    // }
 
     ## SAVE FROM STRING
     public function saveFromClassString($menu)
@@ -66,7 +65,6 @@ class Menu
             }
         }
     }
-
     ## SAVE FROM ARRAY
     public function saveFromArray( $menu ) 
     {
@@ -74,19 +72,14 @@ class Menu
 
         if( !empty($nav->tag) ) {
             $this->taggs[$nav->tag] = $nav;            
-            $this->saveInGroupFrom("tag", $nav);
+            $this->addGroup("tag", $nav);
         }
 
         if( !empty($nav->route) ) {
             $this->routes[$nav->route] = $nav;
-            $this->saveInGroupFrom("route", $nav);
+            $this->addGroup("route", $nav);
         }
     }
-
-    // public function saveTagFromArray( $tag, $menu ) {        
-    //     $this->taggs[$tag] = new \Malla\Menu\Support\Nav($menu);
-    // }
-
     ## SAVE FROM CLOSURE
     public function makeInstaceFromClosure( $type, $alia, $closure ) {
         ($nav = new \Malla\Menu\Support\Nav())->add($type, $alia, $alia);
@@ -125,14 +118,31 @@ class Menu
             if( isset($nav->tag) ) {
                 if( !empty( ($tag = $nav->tag) ) ) {
                     $this->taggs[$tag] = $nav;
-                }
+                    $this->addGroup("tag", $nav);
+                }                
             }
                 
             if( isset($nav->route) ) {
                 if( !empty( ($route = $nav->route) ) ) {
                     $this->routes[$route] = $nav;
+                    $this->addGroup("route", $nav);
                 }
-            }   
+            }            
+        }
+    }
+
+    ## GROUPS
+    public function addGroup( $type=null, $nav ) {
+        if( in_array($type, ["tag", "route"]) && is_object($nav)) {
+            if( isset($nav->groups) ) {
+                if( is_array( ($groups = $nav->groups) ) ) {
+                    foreach( $groups as $group ) {
+                        if( array_key_exists($group, $this->containers) ) {
+                            $this->containers[$group]->{$type}($nav->{$type});                            
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -9,14 +9,6 @@ namespace Malla\Menu\Support;
 
 class Item
 {
-    public $type;
-    // public $icon;
-    // public $label;
-    // public $url;
-    // public $dropdown;
-    // public $paragraph;
-    
-
     public function toArray()  {
         return (array) $this;
     }
@@ -26,9 +18,7 @@ class Item
         if( !isset($this->{$key}) ) {
             $this->{$key} = $value;
         }
-    }
-
-    
+    }    
 
     public function line() {
         $this->add("type", "line");

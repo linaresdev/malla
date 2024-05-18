@@ -12,9 +12,10 @@ class UserNav
     public function boot($nav)
     {
         $nav->add("tag", "admin-users-nav");
-        $nav->add("route", "admin/users/*");
+        $nav->add("route", "login");
         $nav->add("description", "Admin Users Menu");
         $nav->add("template", "bootstrap");
+        $nav->group("nav-area-0");
 
         $nav->iconFilter("replace", [   
             "account" => '<span class="mdi mdi-account"></span>'         

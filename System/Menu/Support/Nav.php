@@ -13,7 +13,7 @@ class Nav
 
     public $route;
 
-    public $groups;
+    public $groups = [];
 
     public $description;
 
@@ -43,6 +43,13 @@ class Nav
         }
     }
 
+    public function group($slug)
+    {
+        if( !array_key_exists($slug, $this->groups) ) {
+            $this->groups[] = $slug;
+        }
+    }
+
     public function addFilter($key, $data) {
         foreach($data as $k => $value ) {
             $this->filters[$key][$k] = $value;
@@ -64,14 +71,6 @@ class Nav
     public function styleFilter($data=[])
     {
         $this->filters["style"] = array_merge( $this->filters["style"] , $data );
-    }
-
-    public function addText($text)
-    {
-    }
-
-    public function addLine()
-    {
     }
 
     public function item($key=null, $closure=null)

@@ -5,7 +5,7 @@ Librerías de navegación
 - [Guardar menú](#save)
 - [Buscar menú](#query)
 - [Actualizar menú](#update)
-- [Interactuando con la sesiones](#auth)
+- [Interactuando con los items de menu](#Comportamiento)
 - [Agregar menú a la vista](#views)
 
 ### Instalación
@@ -26,10 +26,10 @@ Inicializar desde el proveedor de servicio
 ```
 
 ### SAVE
-
 Guardar menú etiquetado desde un arreglo
 
 ```php
+
     Nav::save([
         "tag"           => "users-nav-profile",
         "route"         => "profiler*",
@@ -42,16 +42,18 @@ Guardar menú etiquetado desde un arreglo
 Guardar menú etiquetado desde una clase
 
 ```php
-    Nav::save(new \Malla\Admin\UserNav);
-
-    // OR
+    ## Class string 
     Nav::save(\Malla\Admin\UserNav::class);
+
+    // Clase 
+    Nav::save( new \Malla\Admin\UserNav() );
 ```
 
 Guardar menú etiquetado desde un closure
 
 ```php
-    Nav::save(function($nav) {
+    Nav::save(function($nav) 
+    {
         ## HEADER
         $nav->add("tag", "users-profile");
         $nav->add("route", "admin/users*");
@@ -77,16 +79,15 @@ Guardar menú etiquetado desde un closure
         });
 
         ## AGREAR UNA LINEA
-        $nav->addItem(1, function($item) {
+        $nav->addItem($key=1, function($item) {
             $item->add("type", "line");
         });
 
         ## AGREAGAR UN LINK SIMPLE AL MENU
-        ## $nav->addItem($key, $closure);
         ## $key es ek numero de posicion del item 
         ## Closure es el constructor
 
-        $nav->addItem(2, function($item) {
+        $nav->addItem($key=2, function($item) {
             $item->add("type", "link");
             $item->add("icon", "mdi-account");
             $item->add("label", "update.password");
@@ -112,16 +113,23 @@ Guardar menú etiquetado desde un closure
 ```
 
 ### QUERY
-
-Consulta menú etiquetado
+Acceder a un menú
 
 ```php
+
+    ## Acceder aun menú etiquetado
     Nav::tag($tag="users-nav-profile", function($nav) {
         //
     });
+
+    ## Acceder a un route menú
+    Nav::route($route="admin/users*", function( $nav ) {
+        //
+    });
+
 ```
 
-Buscar route menú registrado
+Acceder a un route menú registrado
 
 ```php
     Nav::route($route="admin/users*", function($nav) {
@@ -129,24 +137,25 @@ Buscar route menú registrado
     });
 ```
 
-### AUTH
-Interactuando con la sesiones.
-Bloquear un ítem de un menú si no esta logueado.
+### Comportamiento
+Interactuando con los items.
+Bloquear un ítem de navegacion si es requerido.
 
 ```php
 
-    Nav::tag("admin-users", function($nav) {
+    Nav::tag("admin-users", function($nav) 
+    {
         $nav->item($key=3, function($item) {
             ## Denegar link
             $nav->locked();
 
-            ## Bloquear sub link
+            ## Denegar sub link
             $nav->locked(5);
         })
     });
 
-    Nav::route("admin/users*", function($nav) {
-        
+    Nav::route("admin/users*", function($nav) 
+    {      
         $nav->item($key=3, function($item) {
             ## Denegar link
             $nav->locked();
@@ -162,6 +171,8 @@ Bloquear un ítem de un menú si no esta logueado.
 Actualizar un item de menú conociendo su indice
 
 ```php
+
+    ## Actulizar menú etiquetado
     Nav::tag("admin-users", function($nav) {
         $nav->item($key=3, function($item) {
             ## Denegar link
@@ -172,6 +183,7 @@ Actualizar un item de menú conociendo su indice
         });      
     });
 
+    ## Actualizar route menú
     Nav::route("admin/users*", function($nav) {
         $nav->item($key=3, function($item) {
             ## Denegar link
@@ -187,11 +199,18 @@ Actualizar un item de menú conociendo su indice
 Agregar un menú etiquetado a la vista
 
 ```php
-
+    ## Menu etiquetado
     {!! Nav::tag($tag="users-nav-profile", $ident=12) !!}
+
+    ## Grupo de menú etiquetados
+    {!! Nav::taggs($tag="nav-area-0", $ident=12) !!}
 ```
 Agregar un route menú a la vista
-```php
 
+```php
+    ## Route menú
     {!! Nav::route( $ident=12 ) !!}
+
+    ## Grupos de routes menú
+    {!! Nav::routes($tag="nav-area-0", $ident=12 ) !!}
 ```

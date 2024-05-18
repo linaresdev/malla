@@ -55,3 +55,18 @@ $this->publishes($this->assets, "malla");
 //Nav::container("Main Navbar");
 //Nav::container("Nav area 0");
 
+/*
+* Seccion de menu */
+
+## Grupos o Contenedores de menu
+
+Nav::container("Nav area 0");
+Nav::container("Nav area 1");
+Nav::container("Nav area 2");
+
+Nav::container("Aside area 0");
+Nav::container("Aside area 1");
+Nav::container("Aside area 2");
+
+
+//dd(Nav::app());

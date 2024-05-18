@@ -23,8 +23,9 @@
 
                 <div id="mainBar" class="moon-navbar-body collapse navbar-collapse">
                     
-                    
-                    <ul class="nav ms-auto">
+                    {!! Nav::tag("main-navbar") !!}
+
+                    <!-- <ul class="nav ms-auto">
                         @if(auth()->check())
                         <li class="nav-item">
                             <a href="#" class="nav-link">Link 0</a>
@@ -66,7 +67,7 @@
                                 <mdi class="mdi mdi-align-horizontal-left"></mdi>
                             </a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>            
             </div>
         </nav>

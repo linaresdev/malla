@@ -14,17 +14,17 @@ class Bootstrap
     protected $menu;
 
     protected $filters = [
-        "style" => [
-            "{n1}"          => "navbar-nav bg-white my-3 flex-column rounded-1 px-0",
-            "{n2}"          => "dropdown-menu",
-            "{item}"        => "nav-item",
-            "{dropitem}"    => "nav-item dropdown",
-            "{link}"        => "nav-link px-3",
-            "{toggle}"      => "nav-link px-3 dropdown-toggle",
-            "{droplink}"    => "dropdown-item",
-            "{header}"      => "px-2",
-            "{line}"        => "border-bottom my-0",
-        ]
+        // "style" => [
+        //     "{n1}"          => "navbar-nav bg-white my-3 flex-column rounded-1 px-0",
+        //     "{n2}"          => "dropdown-menu",
+        //     "{item}"        => "nav-item",
+        //     "{dropitem}"    => "nav-item dropdown",
+        //     "{link}"        => "nav-link px-3",
+        //     "{toggle}"      => "nav-link px-3 dropdown-toggle",
+        //     "{droplink}"    => "dropdown-item",
+        //     "{header}"      => "px-2",
+        //     "{line}"        => "border-bottom my-0",
+        // ]
     ];
 
     public function __construct($menu)

@@ -11,12 +11,13 @@ use Malla\Menu\Support\Menu;
 
 class Nav extends Menu 
 {     
-    public function tag( $slug=null, $arg=null )
+    public function tag( $slug=null, $arg=4 )
     {
         if( !empty($slug) )
         { 
             ## Si $slug es un string y $arg es un closure : Registro de menu etiquetado
-            if( is_string($slug) && ($arg instanceof \Closure) ) {  
+            if( is_string($slug) && ($arg instanceof \Closure) ) 
+            {  
                 if( array_key_exists($slug, $this->taggs) ) {                    
                     $arg( ($nav = $this->taggs[$slug]) );
                 }
@@ -24,7 +25,7 @@ class Nav extends Menu
 
             ## Si $arg es numerico: Solicitud de menu etiquetado
             if( is_string($slug) && is_numeric($arg) )
-            {               
+            {              
                 if( array_key_exists($slug, $this->taggs) )
                 { 
                     $menu = $this->taggs[$slug];
@@ -44,10 +45,9 @@ class Nav extends Menu
 
         if( array_key_exists( $slug, $this->containers ) ) 
         {
-            if( !empty( ($taggs = $this->containers[$slug]->navs("taggs")) ) ) {
-               
+            if( !empty( ($taggs = $this->containers[$slug]->navs("taggs")) ) )
+            {               
                 foreach( $taggs as $tag ) {
-                    dd($this->tag($slug, 4));
                     $collect .= $this->tag($slug, 4);
                 }
             }

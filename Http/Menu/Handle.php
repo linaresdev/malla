@@ -5,6 +5,7 @@
 *---------------------------------------------------------
 */
 
-if( $AUTH->check() ):
+## Registro de menu
+Nav::save( new \Malla\Http\Menu\Web\MainNavar( $auth, $request ));
 
-endif;
+//dd( Nav::app() );

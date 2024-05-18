@@ -23,6 +23,8 @@ class MallaMiddleware {
     {
         $auth = Auth::guard($guard);
 
+        require_once(__DIR__."/../Menu/Handle.php");
+
         if( $auth->guest($guard) && !in_array($request->path(), $this->exerts) ) {
             return redirect()->to("login");
         } 

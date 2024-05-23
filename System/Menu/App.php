@@ -57,12 +57,12 @@ if( !function_exists('isSimpleLink') )
 if( !function_exists("isDropdownLink") )
 {
     function isDropdownLink( $data )
-    { 
+    {
         $ruls["type"] = ["required", "string", function($attrs, $value, \Closure $fail ) {            
             if( $value != "link") $fail("Error Type");
         }];
         
-        $ruls["label"]      = "required|string";
+        $ruls["label"]      = "";
         $ruls["url"]        = "required|string";
         $ruls["dropdown"]   = ["required", "array"];
 

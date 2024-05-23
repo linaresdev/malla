@@ -8,4 +8,5 @@
 ## Registro de menu
 Nav::save( new \Malla\Http\Menu\Web\MainNavar( $auth, $request ));
 
-//dd( Nav::app() );
+//dd( Nav::tag("main-navbar") );
+

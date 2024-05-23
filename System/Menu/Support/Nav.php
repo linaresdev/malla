@@ -56,8 +56,9 @@ class Nav
         }
     }
 
-    public function iconFilter($index, $data=[])
+    public function iconFilter( $data=[] )
     {
+        $this->filters["icons"] = array_merge( $this->filters["icons"] , $data );
         //$this->filters["icons"][$index] = array_merge($this->filters["icons"][$index], $data);
     }
     public function labelFilter($index, $data=[])

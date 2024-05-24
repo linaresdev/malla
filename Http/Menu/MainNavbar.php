@@ -97,7 +97,14 @@ class MainNavbar
             $item->add("label", null);
             $item->add("url", "#");
 
-            $item->addDropdown(1, function($item){
+            $item->addDropdown(10, function($item){
+                $item->add("type", "link");
+                $item->add("icon", "mdi-cog-outline");
+                $item->add("label", __("site.admin"));
+                $item->add("url", "admin");
+            });
+
+            $item->addDropdown(30, function($item){
                 $item->add("type", "link");
                 $item->add("icon", "mdi-logout");
                 $item->add("label", __("words.logout"));

@@ -153,7 +153,10 @@ class es_DO {
          "send.update.password"  => "Enviar solicitud cambio de contraseña",
          "send.temporary.access" => "Enviar acceso temporal",
 
+         "site.admin"   => "Administrar este sitio",
+         
          "schedule.update.password" => "Progamar actualización de contraseña",
+         
       ];
    }
 }

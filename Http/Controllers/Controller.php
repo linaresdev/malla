@@ -34,6 +34,10 @@ class Controller extends BaseController
         if( method_exists( $app, 'share' ) ) {
             $data = array_merge( $data, $app->share() );
         }
+
+        if( method_exists( $app, 'settingTheme' ) ) {
+            $data = array_merge( $data, $app->share() );
+        }
         
         $this->share( $data );        
     }

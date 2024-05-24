@@ -23,6 +23,7 @@
                 
                 <div id="mainNavBar" class="moon-navbar-body collapse navbar-collapse">  
                     
+                    {!! Nav::tag("office-navbar") !!}
                     {!! Nav::tag("main-navbar") !!}
 
                 </div>            

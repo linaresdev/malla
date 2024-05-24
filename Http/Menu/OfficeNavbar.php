@@ -32,9 +32,14 @@ class OfficeNavbar {
         ]);
     }
 
-    public function boot( $nav ) {
+    public function boot( $nav )
+    {
+        ## Headers
         $nav->add("tag", "office-navbar");
         $nav->add("description", "Office Menu");
         $nav->add("template", "bootstrap");
+
+        ## Formato
+        $this->bootstrapFormat($nav);
     }
 }

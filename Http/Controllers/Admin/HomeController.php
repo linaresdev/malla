@@ -14,6 +14,8 @@ class HomeController extends Controller
     public function __construct( HomeSupport $app )
     {
         $this->boot($app);
+
+       // $this->settingAdminTheme($app); 
     }
 
     public function index() {

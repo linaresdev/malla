@@ -17,13 +17,4 @@ abstract class Controller extends BaseController
 {
     protected $path = "malla::admin.";
 
-    // public function settingAdminTheme($support) {
-
-    //     if(method_exists($support, "settings") )
-    //     {
-    //         return $support->settingTemplate($this);
-    //     }
-    // //    $this->data["container"] = "moon-layout-md moon-style-light";
-    // //    $this->data["wrapp"]     = "container-fluid";      
-    // }
 }

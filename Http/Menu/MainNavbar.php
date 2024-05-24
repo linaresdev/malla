@@ -1,5 +1,5 @@
 <?php
-namespace Malla\Http\Menu\Web;
+namespace Malla\Http\Menu;
 
 /*
 *---------------------------------------------------------
@@ -9,8 +9,8 @@ namespace Malla\Http\Menu\Web;
 
 use Illuminate\Support\Facades\Auth;
 
-class MainNavar {
-
+class MainNavbar 
+{
     protected $auth;
 
     protected $request;
@@ -20,7 +20,22 @@ class MainNavar {
         $this->request  = $request;
     }
 
-    public function navNoLoged($nav) {
+    ## Formato Bootstrap
+    public function bootstrapFormat($nav) 
+    {
+        $nav->styleFilter([
+            '{n1}'          => "navbar-nav  ms-auto",
+            "{n2}"          => "dropdown-menu dropdown-menu-end",
+            '{item}'        => "nav-item",
+            "{dropitem}"    => "nav-item dropdown",
+            '{link}'        => "nav-link position-relative",
+            "{toggle}"      => "nav-link px-3 dropdown-toggle",
+            "{droplink}"    => "dropdown-item",     
+        ]);
+    }
+
+    public function navNoLoged($nav) 
+    {
         ## STYLE
         $nav->styleFilter([
             '{n1}'      => "navbar-nav  ms-auto", 
@@ -48,10 +63,11 @@ class MainNavar {
     public function loadItemNotify( $user, $nav, $position=0 ) 
     {
         $nav->labelFilter("match", [
-            "{bell}" => '<span class="badge text-bg-success position-absolute top-0 start-0 rounded-pill border border-light p-1">15</span>',
+            "{bell}" => '<span class="badge text-bg-mute link-secondary position-absolute top-0 start-0 rounded-pill border border-light p-1">0</span>',
         ]);
 
-        $nav->addItem($position, function($item) {
+        $nav->addItem($position, function($item)
+        {
             $item->add("type", "link");
             $item->add("icon", 'mdi-bell mdi-24px');
             $item->add("label", "{bell}");
@@ -103,16 +119,7 @@ class MainNavar {
         else {
             $user = $this->request->user();
             
-            ## Bootstrap
-            $nav->styleFilter([
-                '{n1}'          => "navbar-nav  ms-auto",
-                "{n2}"          => "dropdown-menu dropdown-menu-end",
-                '{item}'        => "nav-item",
-                "{dropitem}"    => "nav-item dropdown",
-                '{link}'        => "nav-link position-relative",
-                "{toggle}"      => "nav-link px-3 dropdown-toggle",
-                "{droplink}"    => "dropdown-item",     
-            ]);
+            $this->bootstrapFormat($nav);
 
             ## Personalizando bootstrap
             $nav->styleFilter([
@@ -125,7 +132,6 @@ class MainNavar {
             $this->loadItemNotify($user, $nav, 10);
 
             $this->loadItemAccount($user, $nav, 20);            
-        }
-        
+        }        
     }
 }

@@ -6,7 +6,8 @@
 */
 
 ## Registro de menu
-Nav::save( new \Malla\Http\Menu\Web\MainNavar( $auth, $request ));
+Nav::save( new \Malla\Http\Menu\MainNavbar( $auth, $request ));
+Nav::save( new \Malla\Http\Menu\OfficeNavbar( $auth, $request ));
 
 //dd( Nav::tag("main-navbar") );
 

@@ -5,9 +5,11 @@
 *---------------------------------------------------------
 */
 
-## Registro de menu
+## Registro de menu 
 Nav::save( new \Malla\Http\Menu\MainNavbar( $auth, $request ));
-Nav::save( new \Malla\Http\Menu\OfficeNavbar( $auth, $request ));
+Nav::save( new \Malla\Http\Menu\MainNav( $auth, $request ));
 
-//dd( Nav::tag("main-navbar") );
+//Nav::save( new \Malla\Http\Menu\OfficeNavbar( $auth, $request ));
+
+//dd( Nav::tag("main-nav") );
 

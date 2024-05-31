@@ -14,17 +14,6 @@ class Bootstrap
     protected $menu;
 
     protected $filters = [
-        // "style" => [
-        //     "{n1}"          => "navbar-nav bg-white my-3 flex-column rounded-1 px-0",
-        //     "{n2}"          => "dropdown-menu",
-        //     "{item}"        => "nav-item",
-        //     "{dropitem}"    => "nav-item dropdown",
-        //     "{link}"        => "nav-link px-3",
-        //     "{toggle}"      => "nav-link px-3 dropdown-toggle",
-        //     "{droplink}"    => "dropdown-item",
-        //     "{header}"      => "px-2",
-        //     "{line}"        => "border-bottom my-0",
-        // ]
     ];
 
     public function __construct($menu)
@@ -33,7 +22,7 @@ class Bootstrap
         
         foreach($this->filters as $key => $filter ) {
             $this->menu->addFilter($key, $filter);
-        }
+        }        
     }
 
     public function icon($slug)
@@ -136,7 +125,7 @@ class Bootstrap
         $icon   = $this->icon($item["icon"]);
         $label  = $this->label($item["label"]);
         $url    = $this->url($item["url"]);
-        $style  = $this->style("{link}, link-$row");
+        $style  = $this->style("{link} nav-link-$row");
         $style  = $this->onLink($style, $url);
         
         $html  = $this->tab($index);
@@ -150,9 +139,9 @@ class Bootstrap
     }
 
     public function dropdownLink($item, $index=8, $row)
-    { 
+    {
         $html  = $this->tab($index);
-        $html .= '<a href="#" class="'.$this->style('{toggle}').'" data-toggle="dropdown" data-bs-toggle="dropdown">';
+        $html .= '<a href="#" class="'.$this->style("{toggle} nav-link-$row").'" data-toggle="dropdown" data-bs-toggle="dropdown">';
         $html .= "\n";
         $html .= $this->tab($index+4);
         $html .= $this->icon($item["icon"]);
@@ -251,7 +240,7 @@ class Bootstrap
                 if( isSimpleLink( $data ) )
                 { 
                     $html .= $this->tab($index+4);
-                    $html .= '<li class="'.$this->style("{item}").'">';
+                    $html .= '<li class="'.$this->style("{item} nav-item-$row").'">';
                     $html .= "\n";
     
                     $html .= $this->link( $V0->toArray(), $index+8, $row );
@@ -263,7 +252,7 @@ class Bootstrap
                 if( isDropdownLink( $data ) )
                 {  
                     $html .= $this->tab($index+4);
-                    $html .= '<li class="'.$this->style("{dropitem}").'">';
+                    $html .= '<li class="'.$this->style("{dropitem} dropdown-$row").'">';
                     $html .= "\n";
                     
                     $html .= $this->dropdownLink( $data, $index+8, $row );

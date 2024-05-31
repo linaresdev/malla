@@ -16,5 +16,4 @@ use Malla\Http\Controllers\Controller as BaseController;
 abstract class Controller extends BaseController 
 {
     protected $path = "malla::admin.";
-
 }

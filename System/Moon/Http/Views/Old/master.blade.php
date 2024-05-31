@@ -22,7 +22,6 @@
             <section class="{{$wrapp}}">
                 @yield("body", "Body Content")
             </section>
-            
         </article>
 
         @section("js")

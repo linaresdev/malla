@@ -28,9 +28,9 @@ class MainNavbar
             "{n2}"          => "dropdown-menu dropdown-menu-end",
             '{item}'        => "nav-item",
             "{dropitem}"    => "nav-item dropdown",
-            '{link}'        => "nav-link position-relative",
-            "{toggle}"      => "nav-link px-3 dropdown-toggle",
-            "{droplink}"    => "dropdown-item",     
+            '{link}'        => "nav-link",
+            "{toggle}"      => "nav-link dropdown-toggle px-3",
+            "{droplink}"    => "dropdown-item",  
         ]);
     }
 
@@ -39,7 +39,6 @@ class MainNavbar
         ## STYLE
         $nav->styleFilter([
             '{n1}'      => "navbar-nav  ms-auto", 
-            '{item}'    => "nav-item",
             '{link}'    => "btn btn-sm rounded-pill mt-1 me-1 px-3",
             "link-1"    => "bg-light link-secondary",
             "link-2"    => "bg-primary-subtle link-secondary"         
@@ -63,7 +62,8 @@ class MainNavbar
     public function loadItemNotify( $user, $nav, $position=0 ) 
     {
         $nav->labelFilter("match", [
-            "{bell}" => '<span class="badge text-bg-mute link-secondary position-absolute top-0 start-0 rounded-pill border border-light p-1">0</span>',
+            "{bell}" => '<span class="badge text-bg-mute link-secondary position-absolute top-0 start-0 rounded-pill border border-light p-1">0</span> 
+                        <span class="text-toggle">Notificaciones</span>',
         ]);
 
         $nav->addItem($position, function($item)
@@ -88,13 +88,16 @@ class MainNavbar
     public function loadItemAccount( $user, $nav, $position=0 ) 
     {
         $nav->iconFilter([   
-            "{avatar}" => $user->avatar->url        
+            "{avatar}" => $user->avatar->url,    
         ]); 
+        $nav->labelFilter("match", [ 
+            "{name}" => '<span class="text-toggle">'.$user->firstname.'</span>',                 
+        ]);
 
         $nav->addItem(20, function($item) use ($user) {
             $item->add("type", "link");
             $item->add("icon", '{avatar}');
-            $item->add("label", null);
+            $item->add("label", '{name}');
             $item->add("url", "#");
 
             $item->addDropdown(10, function($item){
@@ -110,6 +113,22 @@ class MainNavbar
                 $item->add("label", __("words.logout"));
                 $item->add("url", "logout");
             });
+        });
+    }
+
+    public function loadItemSwapAside( $nav, $position )
+    {
+        $nav->styleFilter([
+            "nav-item-3"    => "pt-2 aside",   
+            "nav-link-3" => "swap-aside link-primary px-0"        
+        ]);
+
+        $nav->addItem($position, function($item)
+        {
+            $item->add("type", "link");
+            $item->add("icon", 'mdi-align-horizontal-left mdi-24px');
+            $item->add("label", "");
+            $item->add("url", "#");
         });
     }
 
@@ -130,7 +149,6 @@ class MainNavbar
 
             ## Personalizando bootstrap
             $nav->styleFilter([
-                "dropdown-1"    => "p-1 rounded-top",
                 "{header}"      => "dropdown-header",
                 "{img-avatar}"  => "avatar avatar-navbar w-40px"       
             ]); 
@@ -138,7 +156,9 @@ class MainNavbar
             ## ITEMS
             $this->loadItemNotify($user, $nav, 10);
 
-            $this->loadItemAccount($user, $nav, 20);            
+            $this->loadItemAccount($user, $nav, 20);  
+            
+            $this->loadItemSwapAside( $nav, 25 );
         }        
     }
 }

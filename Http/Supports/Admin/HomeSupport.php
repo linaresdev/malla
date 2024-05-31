@@ -12,7 +12,7 @@ class HomeSupport
     public function share()
     {
         return [
-            "container" => "moon-layout-md",
+            "container" => "moon-layout-lg",
             "wrapp"     => "container-fluid"
         ];
     }

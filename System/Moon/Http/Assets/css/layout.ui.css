@@ -20,6 +20,11 @@ body{
     border-radius: 50% 50%;
 }
 
+/*  
+* LAYOUT
+*
+*/
+
 [role=moon] {
     padding: 0 0;
 }
@@ -50,7 +55,9 @@ body{
     position: relative;
     bottom: -3px;
 }
-
+[role=moon] .moon-navbar .navbar .nav-item .nav-link .text-toggle {
+    display: none;
+}
 [role=moon] .moon-navbar .navbar .navbar-toggler{
     border: none;
 }
@@ -72,6 +79,21 @@ body{
     margin-left: -5px;
 }
 /* NAV */
+.nav.nav-embed {
+    flex-direction: column !important;
+}
+.nav.nav-embed .dropdown .dropdown-menu {
+    border-color: transparent;
+	-webkit-border-radius: 0 0;
+	-moz-border-radius: 0 0;
+	-ms-border-radius: 0 0;
+	-o-border-radius: 0 0;
+	border-radius: 0 0;
+	padding: 0 0;
+	position: static !important;
+	transform: translate3d(0px, 0px, 0px) !important;
+	width: 100%;
+}
 [role=moon] .moon-nav {
     background-color: #fff;
     position: fixed;
@@ -108,7 +130,6 @@ body{
     padding: 0 15px 0 15px;
     display: none;
 }
-
 [role=moon] .moon-navbar .navbar .moon-navbar-body .swap-aside {
     padding: 0 15px 0 15px;
     display: none;
@@ -152,6 +173,9 @@ body{
 }
 /*
 * LAYOUT SM */
+[role=moon] .moon-layout-sm {
+    padding: 0 15px 0 15px !important;
+}
 [role=moon] .moon-layout-sm .moon-navbar .moon-navbar-body .swap-aside,
 [role=moon] .moon-layout-sm .moon-navbar .swap-nav  {
     display: inline-block;
@@ -224,6 +248,12 @@ body{
     }
 }
 
+@media(min-width: 990px) {
+    [role=moon] .moon-navbar .navbar {
+        background: linear-gradient(to bottom,  #f3f3f3 0%,#ffffff 100%,#f0f0f0 100%);
+    }
+}
+
 @media( max-width: 990px )
 {
     [role=moon] .wrapp-md {
@@ -265,9 +295,12 @@ body{
         transition-property: margin-right;
         transition-duration: .2s;
     }
-    [role=moon] .moon-navbar .swap-nav {
+    [role=moon] .moon-layout-sm .swap-aside {
         display: inline-block;
     }
+    /* [role=moon] .moon-navbar .swap-nav {
+        display: inline-block;
+    } */
 }
 
 @media( max-width: 770px ) {
@@ -281,11 +314,14 @@ body{
     [role=moon] .moon-layout-lg .moon-navbar .moon-navbar-body .swap-aside,
     [role=moon] .moon-layout-md .moon-navbar .moon-navbar-body .swap-aside {
         display: none;
-    }
+    }    
+    [role=moon] .moon-navbar .navbar .nav-item .nav-link .text-toggle,
     [role=moon] .moon-navbar  .navbar .swap-aside {
         display: inline-block;
     }
-    
+    [role=moon] .moon-navbar  .navbar .nav-item.aside {
+        display: none;
+    }
     [role=moon] .moon-body {
         margin-right: 0;
         transition-property: margin-right;

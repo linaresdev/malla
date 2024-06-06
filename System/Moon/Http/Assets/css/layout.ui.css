@@ -20,6 +20,21 @@ body{
     border-radius: 50% 50%;
 }
 
+
+.btn.btn-slim.active.focus, .btn.btn-slim.active:focus,
+.btn.btn-slim.focus, .btn.btn-slim:active.focus, 
+.btn.btn-slim:active:focus, .btn.btn-slim:focus {
+    border: none;
+}
+.table .dropdown .btn::before {
+    margin-right: -2px;
+    margin-bottom: 4px;
+    display: none;
+}
+.table .dropdown .btn.show::before {
+    display: inline-block;
+}
+
 /*  
 * LAYOUT
 *

@@ -30,6 +30,7 @@ class es_DO {
          "admin.access"          => "Administrar accesos",
 
          "auth.0"                => "Cuenta deshabilitada",
+         "auth.1"                => "Cuenta activa",
          "auth.2"                => "Cuenta suspendida de forma temporal",
          "auth.3"                => "Cuenta bloqueada",
          "auth.login"            => "Acceder",

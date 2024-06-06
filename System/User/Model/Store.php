@@ -9,6 +9,7 @@ namespace Malla\User\Model;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Store extends User
 {
@@ -54,12 +55,13 @@ class Store extends User
         return $this->morphOne(\Malla\Model\Avatar::class, "avatable");
     }
 
+    ## Many to Many
     public function groups() {
-        return $this->morphToMany(\Malla\Model\Term::class, "taxonomies")->withPivot('created_at');
+        return $this->morphToMany(\Malla\Model\Group::class, "groupable");
     }
 
-    public function posts()
-    {
-        
+    ## HELPERS
+    public function fullname() {
+        return $this->firstname.' '.$this->lastname;
     }
 }

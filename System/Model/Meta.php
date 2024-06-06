@@ -33,4 +33,9 @@ class Meta extends Model {
         return $this->morphTo();
     }
 
+    public function add($data) {
+        foreach($data as $key => $value ) {
+            $this->create(["key" => $key, "value" => $value]);
+        }
+    }
 }

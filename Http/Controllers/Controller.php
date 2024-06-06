@@ -29,7 +29,7 @@ class Controller extends BaseController
     public function boot( $app=null, $data=[] )
     {
         $this->app  = $app;
-        $app->user  = request()->user();
+        $app->login  = request()->user();
        
         if( method_exists( $app, 'share' ) ) {
             $data = array_merge( $data, $app->share() );

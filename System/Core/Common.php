@@ -55,10 +55,10 @@ if( Malla::start() )
     Malla::app("load")->run(new \Malla\Core\Driver());  
     
     ## EXCEPTIONS 
-    $this->app->singleton(
-        Illuminate\Contracts\Debug\ExceptionHandler::class,
-        \Malla\Exception\Handler::class
-    );
+    // $this->app->singleton(
+    //     Illuminate\Contracts\Debug\ExceptionHandler::class,
+    //     \Malla\Exception\Handler::class
+    // );
 }
 else {
     Malla::app("load")->run(new \Malla\Install\Driver());

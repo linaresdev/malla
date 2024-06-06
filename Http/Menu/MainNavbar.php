@@ -40,8 +40,8 @@ class MainNavbar
         $nav->styleFilter([
             '{n1}'      => "navbar-nav  ms-auto", 
             '{link}'    => "btn btn-sm rounded-pill mt-1 me-1 px-3",
-            "link-1"    => "bg-light link-secondary",
-            "link-2"    => "bg-primary-subtle link-secondary"         
+            "link-1"    => "btn bg-secondary-subtle link-secondary",
+            "link-2"    => "btn bg-secondary-subtle link-secondary"         
         ]);
 
         $nav->addItem(10, function($item) {

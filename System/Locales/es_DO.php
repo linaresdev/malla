@@ -49,9 +49,13 @@ class es_DO {
 
          "email.account"         => "Correo de la cuenta",
 
+         "filter.by"             => "Filtrar por",
+         "filter.state"          => "Filtrar por estado",
+
          "membership.cancel"           => "Cancelar membresía",
          "membership.request"          => "Solicitud de membresía",
          "membership.start"            => "Acectar y finalizar",
+
          "getmembership.mail.info"     => "Recibimos su solicitud y realizamos lo preparativo para acompañarlos durante el proceso.",
          "getmembership.mail.action"   => "En el siguiente link completara su membresía de forma segura.",
          "getmembership.mail.footer"   => 'Esta cuenta solo permite correos salientes, los correos entrantes 
@@ -99,6 +103,7 @@ class es_DO {
          "words.administrator"   => "Administración",
          "words.all"             => "Todo",
          "words.applications"    => "Aplicaciones",
+         "words.by"              => "Por",
          "words.configs"         => "Configuración",
          "words.contacts"        => "Contactos",
          "words.components"      => "Componentes",
@@ -133,6 +138,7 @@ class es_DO {
          "words.message"         => "Mensaje",
          "words.modules"         => "Módulos",
          "words.name"            => "Nombre",
+         "words.new"             => "Nuevo",
          "words.bell"            => "Notificaciones",
          "words.user"            => "Usuario",
          "words.users"           => "Usuarios",

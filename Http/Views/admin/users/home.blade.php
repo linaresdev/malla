@@ -2,12 +2,51 @@
 
     @section("content")
 
-    <article class="row pb-3">
+    <article class="row mb-3">
         <section class="col-lg-5">
-            <a href="#" class="btn btn-primary btn-sm rounded-pill px-3">
-                New
-            </a>
+
+            <div class="btn-group">
+                <a href="#" class="btn btn-outline-secondary btn-sm px-3">
+                {!! mdi("account-plus mdi-20px") !!} {{__("words.new")}}
+                </a>
+                <a href="#" class="btn btn-outline-secondary btn-sm px-3">
+                    {!! mdi("account-group mdi-20px") !!} {{__("words.groups")}}
+                </a>
+            </div>
         </section>
+        <section class="col">
+            
+        </section>
+    </article>
+
+    <article class="mb-3">
+        <div class="input-group">
+            <button class="btn btn-outline-secondary"></button>
+
+            <input type="text" class="form-control">
+            
+            <button class="btn btn-outline-secondary dropdown-toggle"
+                data-bs-toggle="dropdown">
+                {!! mdi("filter") !!}
+            </button>
+            <div class="dropdown-menu">
+                <a href="#" class="dropdown-item">
+                    {!! mdi("checkbox-blank-circle-outline") !!} 
+                    {{__("words.all")}} 
+                </a>
+
+                <h4 class="dropdown-header ps-2">
+                    {!! mdi("filter mdi-18px") !!} 
+                    {{__("filter.state")}} :
+                </h4>                
+                @for( $i=0; $i<=4; $i++ )
+                <a href="#" class="dropdown-item">
+                    {!! mdi("checkbox-blank-circle-outline") !!} 
+                    {{trans_choice("user.state.$i", 1)}} 
+                </a>
+                @endfor
+            </div>            
+        </div>
     </article>
 
     <article class="p-4 bg-white rounded-1">
@@ -54,7 +93,7 @@
                         </div>
                     </td>
                     <td class="text-end">
-                    <div class="dropdown dropstart">
+                        <div class="dropdown dropstart">
                             <button class="btn btn-sm btn-slim p-0 rounded-pill dropdown-toggle"
                                 data-bs-toggle="dropdown">
                                 <span class="mdi mdi-progress-wrench mdi-24px"></span>

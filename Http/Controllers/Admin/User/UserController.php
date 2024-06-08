@@ -7,7 +7,7 @@ namespace Malla\Http\Controllers\Admin\User;
 *---------------------------------------------------------
 */
 
-
+use Illuminate\Http\Request;
 use Malla\Http\Supports\Admin\UserSupport;
 
 class UserController extends Controller {
@@ -18,5 +18,9 @@ class UserController extends Controller {
 
     public function index() {
         return $this->render('home', $this->app->index());
+    }
+
+    public function postUpdateState( $user, Request $request ) {
+        return $this->app->postUpdateState($user, $request);
     }
 }

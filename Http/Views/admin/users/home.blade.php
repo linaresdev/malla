@@ -77,13 +77,20 @@
                             <div class="dropdown-menu">
                                 @for( $i=0; $i<=4; $i++ )
                                 @if( $i != $user->activated)
-                                <a href="{{__url('{user}/set-state/'.$i)}}" 
-                                    class="dropdown-item">                                    
-                                    <span class="mdi mdi-checkbox-blank-circle-outline"></span>
-                                    {{trans_choice("user.state.$i", 0)}}                                    
-                                </a>
+                                <form action="{{__url('admin/users/show/'.$user->id.'/update-state')}}"
+                                    method="POST">
+                                    @csrf
+
+                                    <input type="hidden" name="state" value="{{$user->activated}}">
+                                    <input type="hidden" name="newstate" value="{{$i}}">
+
+                                    <button type="submit" class="dropdown-item">
+                                        <span class="mdi mdi-checkbox-blank-circle-outline"></span>
+                                        {{trans_choice("user.state.$i", 0)}} 
+                                    </button>
+                                </form>
                                 @else
-                                <a href="#" class="dropdown-item">                                   
+                                <a href="{{__url('{current}')}}" class="dropdown-item">                                   
                                     <span class="mdi mdi-checkbox-marked-circle-outline"></span>
                                     {{trans_choice("user.state.$i", 1)}}                                    
                                 </a>

@@ -7,6 +7,9 @@ namespace Malla\User\Model;
 *---------------------------------------------------------
 */
 
+use Malla\Database\Factories\UserFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -34,6 +37,10 @@ class Store extends User
         "created_at",
         "updated_at"
     ];
+
+    protected static function newFactory() {
+        return UserFactory::new();
+    }
 
     public function counters() {
         return $this->morphMany(\Malla\Model\Counter::class, "contable");

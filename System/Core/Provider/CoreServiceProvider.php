@@ -24,9 +24,7 @@ class CoreServiceProvider extends ServiceProvider
     public function boot( Kernel $kernel, Translator $lang )
     {
         $this->kernel   = $kernel;
-        $this->lang     = $lang;
-
-        
+        $this->lang     = $lang;           
     }
 
     public function register() 

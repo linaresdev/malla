@@ -15,4 +15,8 @@ use Malla\Http\Controllers\Admin\Controller as BaseController;
 
 abstract class Controller extends BaseController {
     protected $path = "malla::admin.users.";
+
+    public function user() {       
+        return request()->user();
+    }
 }

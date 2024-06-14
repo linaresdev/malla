@@ -7,6 +7,11 @@
 
 /*
 * CONFIGS */
+
+foreach( app("files")->getRequire(__path('{system}/app.php')) as $key => $value ) {
+    $this->app["config"]->set($key, $value);
+}
+
 $SKIN = config("app.skin");
 
 ## URLS
@@ -47,6 +52,8 @@ if( array_key_exists( $SKIN, ($themes = Malla::module("themes"))) )
 }
 
 $this->assets[__path("{system}/Assets")] = __path("{cdn}");
+
+\Illuminate\Pagination\Paginator::useBootstrapFive();
 
 /*
 * ADMIN PUBLISHER */

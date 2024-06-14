@@ -34,13 +34,10 @@ class Driver
     }
 
     public function handler( $app )
-    {
-        $configs["app.skin"]        = "moon";
-        $configs["app.admin.skin"]  = "moon";
-
-        foreach( $configs as $key => $value ) {
-            $app["config"]->set($key, $value);
-        }
+    {        
+        // foreach( app("files")->getRequire(__DIR__."/app.php") as $key => $value ) {
+        //     $app["config"]->set($key, $value);
+        // }
     } 
 
     public function drivers()

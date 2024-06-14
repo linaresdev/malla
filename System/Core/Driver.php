@@ -38,7 +38,8 @@ class Driver
         return [];
     }
 
-    public function handler( $app ) {}
+    public function handler( $app ) {
+    }
 
     public function providers() 
     {

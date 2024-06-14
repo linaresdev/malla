@@ -32,12 +32,12 @@ class Driver
         ];
     }
 
-    // public function handler( $app ) 
-    // {
-    //     $app->bind("Alert", function($app) {
-    //         return new \Malla\Alert\Alert($app);
-    //     });
-    // }
+    public function handler( $app ) 
+    {
+        // $app->bind("Alert", function($app) {
+        //     return new \Malla\Alert\Alert($app);
+        // });
+    }
 
     public function providers()
     {

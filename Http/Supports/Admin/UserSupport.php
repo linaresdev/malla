@@ -25,22 +25,55 @@ class UserSupport
         ];
     }
 
-    public function index() {
-
-        $data['title'] = 'Usuarios';
-        $data["users"] = $this->getUserLists(10);
+    public function index($user)
+    {
+        $data['title']      = 'Usuarios';
+        $data["perpage"]    = ($perpage = config("users.lists.perpage"));
+        $data["users"]      = $this->getUserLists($perpage);
+        $data["filters"]    = [
+            "any",  "firstname", "lastname", "email"
+        ];        
 
         return $data;
     }
 
-    public function getUserLists($perpage=5) {
-        return $this->user->orderByDesc("id")->get()->take($perpage);
+    public function search( $user, $data ) 
+    {        
+        $perpage = 6;
+
+        if( empty( $data ) ) {
+            return ["users" => $this->getUserLists(10)];
+        }
+        
+        if( ($field = config("users.lists.filter")) != "any" ) {
+            $query = $this->user->where( $field, 'LIKE', '%'.$data.'%')                    
+                ->get()->take($perpage);
+        } 
+        else {
+            $query = $this->user->where( "firstname", $data )                 
+                ->get()->take($perpage);
+        }    
+             
+
+        return ["users" => $query];
     }
 
-    public function postUpdateState($user, $request) {
-        
+    public function settingUserList($opt) {
+
+    }
+
+    public function getUserLists($perpage=5) {
+        return $this->user->orderByDesc("id")->paginate($perpage);
+    }
+
+    public function postUpdateState($user, $request)
+    {        
         $user->activated = $request->newstate;
         $user->save();
+
+        if( !empty(($back = $request->back)) ) {
+            return redirect($back);
+        }
 
         return back();
     }

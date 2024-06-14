@@ -102,6 +102,7 @@ class es_DO {
          "words.access"          => "Acceder",
          "words.administrator"   => "Administración",
          "words.all"             => "Todo",
+         "words.any"             => "Cualquier",
          "words.applications"    => "Aplicaciones",
          "words.by"              => "Por",
          "words.configs"         => "Configuración",
@@ -113,6 +114,7 @@ class es_DO {
          'words.dashboard'       => "Escritorio de trabajo",
          "words.domain"          => "Dominio",
          "words.description"     => "Descripción",
+         "words.default"         => "Por defecto",
          'words.domain'          => "Dominio",
          "words.email"           => "Correo Electrónico",
          "words.home"            => "Inicio",
@@ -149,6 +151,7 @@ class es_DO {
          "words.subject"         => "Asunto",
          'words.system'          => "Sistema",
          "words.state"           => "Estado",
+         "words.type"            => "Tipo",
          "words.write-to-us"     => "Excribenos",
 
          "validation.email"       => "El campo :attribute no es valido",

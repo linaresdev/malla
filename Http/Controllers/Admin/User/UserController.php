@@ -17,7 +17,17 @@ class UserController extends Controller {
     }
 
     public function index() {
-        return $this->render('home', $this->app->index());
+        return $this->render('home', $this->app->index($this->user()));
+    }
+    
+    public function search( $data=null ) {        
+        return $this->render(
+            'partial.search', $this->app->search(request()->user(), $data, 10)
+        );
+    }
+
+    public function settingUserList($opt) {
+        return $this->app->settingUserList($opt);
     }
 
     public function postUpdateState( $user, Request $request ) {

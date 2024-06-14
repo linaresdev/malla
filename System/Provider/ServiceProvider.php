@@ -25,11 +25,13 @@ class ServiceProvider extends BaseProvider
     {
         $this->http = $HTTP;
         $this->lang = $LANG;
-
+        
         require_once(__path("{http}/App.php"));
     }
 
-    public function register() { }
+    public function register() {
+       
+    }
 
     public function getGrammars( $locale=null )
     {          

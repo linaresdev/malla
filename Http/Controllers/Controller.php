@@ -30,6 +30,13 @@ class Controller extends BaseController
     {
         $this->app  = $app;
         $app->login  = request()->user();
+
+        // if( $app->login != null ) {
+        //     /** SET PRIVATE CONFIG **/
+        //     foreach($app->login->getConfigs() as $key => $value ) {
+        //         app("config")->set($key, $value);
+        //     }
+        // }
        
         if( method_exists( $app, 'share' ) ) {
             $data = array_merge( $data, $app->share() );

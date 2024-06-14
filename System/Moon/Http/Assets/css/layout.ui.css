@@ -4,6 +4,24 @@ body{
     background-color: #f3f3f3;
     height: 100%;
 }
+.mdi.mdi-20px {
+    display: inline-block;
+    font-size: 20px; 
+    line-height: 80%;
+    position: relative;
+    margin-top: -5px;
+    margin-bottom: -5px;
+    bottom: -2px;
+}
+.mdi.mdi-24px {
+    display: inline-block;
+    font-size: 24px; 
+    line-height: 90%;
+    margin-top: -5px;
+    margin-bottom: -5px;
+    position: relative;
+    bottom: -3px;
+}
 
 .alert.alert-slow {
     display: none;
@@ -26,6 +44,9 @@ body{
 .btn.btn-slim:active:focus, .btn.btn-slim:focus {
     border: none;
 }
+.dropdown-menu.dropdown-mini {
+    min-width: auto !important;
+}
 .table .dropdown .btn::before {
     margin-right: -2px;
     margin-bottom: 4px;
@@ -39,7 +60,6 @@ body{
 * LAYOUT
 *
 */
-
 [role=moon] {
     padding: 0 0;
 }

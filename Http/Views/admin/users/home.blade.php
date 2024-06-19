@@ -2,8 +2,8 @@
 
     @section("content")  
 
-    <article class="p-4 bg-white rounded-1">
-        <div class="row mb-3"> 
+    <article class="py-4 bg-white rounded-1">
+        <div class="row px-4 mb-3"> 
             <div class="col-lg-4"> 
                 <div class="btn-group">
                     <a href="#" class="btn btn-light px-3 active">
@@ -53,7 +53,9 @@
                             data-bs-toggle="dropdown">
                         
                         <div class="dropdown-menu w-100 droplists">
-                            Buscar
+                            <div class="p-1 text-center">
+                                Buscando
+                            </div>
                         </div>
                     </div>
                       
@@ -88,9 +90,15 @@
             </div>
         </div>
 
-        <div class="userlist">
-            @includeIF("malla::admin.users.partial.lists")
-            {{ $users->onEachSide(5)->links() }}
+        
+        <div class="bg-light">
+        @includeIF("malla::admin.users.partial.lists")
+        </div>
+        
+
+        <div class="px-4">
+        {{ $users->onEachSide(5)->links() }}
+        </div>
     </article>
     @endsection
 

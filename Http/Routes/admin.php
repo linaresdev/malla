@@ -18,6 +18,8 @@ Route::prefix("users")->namespace("User")->group(function() {
     Route::prefix("/show/{usrID}")->group(function($route) {
         Route::post("update-state", "UserController@postUpdateState");
     });
+
+    Route::get("/profile/{usrID}", "UserController@profile");
 });
 
 Route::prefix("modules")->namespace("Module")->group(function()

@@ -22,8 +22,7 @@ class MainNav
     {
         $nav->styleFilter([
             '{n1}'          => "nav nav-embed",
-            "{n2}"          => "dropdown-menu
-            ",
+            "{n2}"          => "dropdown-menu",
             '{item}'        => "nav-item",
             "{dropitem}"    => "nav-item dropdown",
             '{link}'        => "nav-link",

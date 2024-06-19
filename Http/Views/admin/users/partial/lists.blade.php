@@ -1,6 +1,6 @@
 
         
-       <table class="table table-sm align-middle">
+       <table class="table table-hover table-sm align-middle">
             <thead>
                 <tr>
                     <th width="40" class="text-center">#</th>
@@ -16,7 +16,13 @@
                         <input type="checkbox" class="form-check-input">
                     </td>
                     <td>
-                        {{$user->fullname()}}
+                        <a href="{{__url('admin/users/profile/'.$user->id)}}" class="btn p-0">
+                            <img width="36" 
+                                src="{{__url($user->getAvatar())}}" 
+                                alt="@"
+                                class="border rounded-pill">
+                            {{$user->fullname()}}
+                        </a>
                     </td>
                     <td class="text-center">
                         <div class="dropdown">

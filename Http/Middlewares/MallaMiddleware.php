@@ -17,9 +17,7 @@ class MallaMiddleware {
         "login",
         "logout",
         "getmembership",
-    ];
-
-    
+    ];    
 
     public function handle( $request, Closure $next, $guard = 'web' )
     {

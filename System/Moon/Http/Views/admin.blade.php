@@ -2,9 +2,12 @@
 
     @section("body")
         
-        <nav class="moon-nav border-end z-3">            
+        <nav class="moon-nav border-end z-3">
+
             <div class="moon-nav-body">
+                @section("nav")          
                 {!! Nav::tag("main-nav") !!}
+                @show
             </div>
         </nav>
 
@@ -14,7 +17,9 @@
           
         </article>
 
-        <aside class="moon-aside border-start">            
+        <aside class="moon-aside border-start z-3">
+
+            @section("aside")            
             <h4>Title</h4>
             
             <div class="moon-nav-body">
@@ -28,5 +33,6 @@
                     @endfor
                 </ul>
             </div>
+            @show
         </aside>
     @endsection

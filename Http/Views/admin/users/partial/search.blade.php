@@ -1,4 +1,5 @@
 
+@if( !empty($users) )
 @foreach($users as $user)
 <div class="d-flex bg-light m-1 p-1">
     <img width="46" class="border rounded-pill" src="{{__url( $user->getAvatar() )}}" alt="@">
@@ -10,3 +11,8 @@
     </a>
 </div>
 @endforeach
+@else
+<div class="p-1 text-center">
+    Sin resultado
+</div>
+@endif

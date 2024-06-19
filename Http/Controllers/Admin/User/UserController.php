@@ -22,7 +22,7 @@ class UserController extends Controller {
     
     public function search( $data=null ) {        
         return $this->render(
-            'partial.search', $this->app->search(request()->user(), $data, 10)
+            'partial.search', $this->app->search( $data )
         );
     }
 
@@ -32,5 +32,9 @@ class UserController extends Controller {
 
     public function postUpdateState( $user, Request $request ) {
         return $this->app->postUpdateState($user, $request);
+    }
+
+    public function profile( $user ) {
+        return $this->render( "profile.home", $this->app->profile($user) );        
     }
 }

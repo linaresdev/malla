@@ -19,7 +19,20 @@ Route::prefix("users")->namespace("User")->group(function() {
         Route::post("update-state", "UserController@postUpdateState");
     });
 
-    Route::get("/profile/{usrID}", "UserController@profile");
+    Route::prefix("/profile/{usrID}")->group(function(){
+        Route::get("/", "UserController@profile");
+        
+        Route::prefix("update")->group(function($route){        
+            ## SET PASSWORD
+            Route::get("/password", "UserController@getUpdatePassword");
+            Route::post("/password", "UserController@postUpdatePassword");
+            
+            ## SET CREDENTIAL
+            Route::get("/credential", "UserController@getUpdateCredential");
+            Route::post("/credential", "UserController@postUpdateCredential");
+        });
+
+    });
 });
 
 Route::prefix("modules")->namespace("Module")->group(function()

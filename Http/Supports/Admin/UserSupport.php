@@ -9,32 +9,16 @@ namespace Malla\Http\Supports\Admin;
 
 use Malla\Menu\Facade\Nav;
 use Malla\User\Model\Store;
+use Malla\Core\Facade\Malla;
+use Malla\Alert\Facade\Alert;
 use Illuminate\Support\Facades\DB;
 
 class UserSupport 
 {
     protected $user;
 
-    public function __construct( Store $user ) {        
-        //$this->user = $user;  
-
+    public function __construct( Store $user ) {
         Nav::save( new \Malla\Http\Menu\Admin\UserNav($user) );
-        
-        // Nav::save([
-        //     "tag"           => "users-nav-profile",
-        //     "route"         => "admin/users*",
-        //     "description"   => "Public Nav 0",
-        //     "template"      => "bootstrap",
-        //     "filters"       => [],
-        //     "items"         => [
-        //         [
-        //             "type" => "link",
-        //             "icon"  => "mdi-account",
-        //             "label" => "Usuarios",
-        //             "url"   => "admin/users"
-        //         ]
-        //     ],
-        // ]);
     }
 
     public function share()
@@ -111,6 +95,69 @@ class UserSupport
         $data["title"] = $user->firstname;
         $data["user"] = $user;
 
+        Malla::addUrl([
+            "{usrID}" => $user->id,
+            "{profiler}" => "admin/users/profile/{usrID}"
+        ]);
+
         return $data;
     }
+
+    public function updatePassword( $user, $request ) {
+
+        $request->validate([
+            "password"  => "required",
+            "rpassword" => "same:password"
+        ]);
+        
+        $user->password = $request->password;
+
+        if( $user->save() ) {
+            Alert::success(__("update.successfull"));
+        }
+        else {
+            Alert::danger(__("update.error"));
+        }
+        return back();
+    }
+
+    public function updateCredential( $user, $request )
+    {
+        ## VALIDATOR
+        $ruls = null;
+        $data = $request->except(['_token', 'form']);
+
+        if( $request->form == "account" )
+        {
+            $ruls["email"]      = "required";
+            $ruls["cellphone"]  = "required|unique:users,cellphone";
+
+            if( ($V = validator($data, $ruls))->fails() ) {
+                Alert::tag($request->form)->errors($V->errors()->all());
+                return back();
+            }
+
+            if( $user->update($data) ) {
+                Alert::tag($request->form)->success(__('update.successfull'));
+                return back();
+            }
+        } 
+
+        if( $request->form == "info" )
+        {
+            $ruls["firstname"]  = "required";
+            $ruls["lastname"]   = "required";
+
+            if( ($V = validator($data, $ruls))->fails() ) {
+                Alert::tag($request->form)->errors($V->errors()->all());
+                return back();
+            }
+
+            if( $user->update($data) ) {
+                Alert::tag($request->form)->success(__('update.successfull'));
+                return back();
+            }
+        }         
+    }
+
 }

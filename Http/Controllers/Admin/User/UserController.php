@@ -9,6 +9,7 @@ namespace Malla\Http\Controllers\Admin\User;
 
 use Illuminate\Http\Request;
 use Malla\Http\Supports\Admin\UserSupport;
+use Malla\Http\Requests\Admin\User\UpdateCredential;
 
 class UserController extends Controller {
 
@@ -36,5 +37,28 @@ class UserController extends Controller {
 
     public function profile( $user ) {
         return $this->render( "profile.home", $this->app->profile($user) );        
+    }
+
+    ## MANTENANCE
+    public function getUpdatePassword( $user ) {
+        return $this->render( 
+            "profile.update.password", 
+            $this->app->profile($user) 
+        );        
+    }
+
+    public function postUpdatePassword( $user, Request $request ) {
+        return $this->app->updatePassword( $user, $request );
+    }
+
+    public function getUpdateCredential( $user ) {
+        return $this->render( 
+            "profile.update.credential", 
+            $this->app->profile($user) 
+        );        
+    }
+
+    public function postUpdateCredential( $user, Request $request ) {
+        return $this->app->updateCredential($user, $request);
     }
 }

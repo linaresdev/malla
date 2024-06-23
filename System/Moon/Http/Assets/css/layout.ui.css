@@ -4,6 +4,11 @@ body{
     background-color: #f3f3f3;
     height: 100%;
 }
+
+.btn input[type=file] {
+    display: none;
+}
+
 .mdi.mdi-20px {
     display: inline-block;
     font-size: 20px; 
@@ -48,6 +53,12 @@ body{
 }
 .dropdown-menu.dropdown-mini {
     min-width: auto !important;
+}
+ul.reset {
+    display: block;
+    list-style: none;
+    margin: 0 0;
+    padding: 0 0;
 }
 .table .dropdown .btn::before {
     margin-right: -2px;

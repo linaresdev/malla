@@ -47,6 +47,8 @@ class es_DO {
 
          "domain.name"           => "Nombre de dominio",
 
+         "confirm.password"      => "Confirmar contraseña",
+
          "email.account"         => "Correo de la cuenta",
 
          "filter.by"             => "Filtrar por",
@@ -75,6 +77,7 @@ class es_DO {
          "request.update.password" => "Solicitar cambio de contraseña",
 
          "update.account"        => "Actulizar cuenta",
+         "update.error"          => "Occurrio un error al tratar de actualizar la información",
          "update.credential"     => "Actualizar credenciales",
          "update.domain"         => "Actulizar nombre de dominio",
          "update.password"       => "Actualizar contraseña",
@@ -118,6 +121,7 @@ class es_DO {
          'words.domain'          => "Dominio",
          "words.email"           => "Correo Electrónico",
          "words.home"            => "Inicio",
+         "words.info"             => "Información",
          "words.firstname"       => "Nombre",
          "words.filter"          => "Filtrar",
          "words.form"            => "Formulario",
@@ -144,6 +148,7 @@ class es_DO {
          "words.bell"            => "Notificaciones",
          "words.user"            => "Usuario",
          "words.users"           => "Usuarios",
+         "words.update"          => "Actualizar",
          "words.save"            => "Guardar",
          "words.send"            => "Enviar",
          "words.slower"          => "Mas lento",

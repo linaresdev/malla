@@ -74,8 +74,32 @@
         </article>
         <div class="modal fade" id="myModal">
             <div class="modal-dialog">
-                <div class="modal-content p-4">
-                        Modal
+                <div class="modal-content px-3 py-4">
+                    <form action="#">
+                        
+                        <input type="file" 
+                            name="avatar"
+                            id="avatar"
+                            class="form-control mb-3">
+                        
+                        <div class="row">
+                            <div class="col-4">
+                                <div style="height:120px;" class="border w-100 bg-light rounded-2">
+                                    
+                                </div>
+                            </div>
+                            <div class="col-8">
+
+                                {{__("image.resized", ["resized" => "120px/120px"])}}
+
+                                <div class="my-3">
+                                    <button type="submit" class="btn btn-sm btn-primary">
+                                       {!! mdi("upload") !!} {{__("words.upload")}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

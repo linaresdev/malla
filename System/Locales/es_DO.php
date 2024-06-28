@@ -53,6 +53,8 @@ class es_DO {
 
          "filter.by"             => "Filtrar por",
          "filter.state"          => "Filtrar por estado",
+         
+         "image.resized"           => "La imagen será redimensionada a :resized",
 
          "membership.cancel"           => "Cancelar membresía",
          "membership.request"          => "Solicitud de membresía",
@@ -146,6 +148,7 @@ class es_DO {
          "words.name"            => "Nombre",
          "words.new"             => "Nuevo",
          "words.bell"            => "Notificaciones",
+         "words.upload"          => "Subir",
          "words.user"            => "Usuario",
          "words.users"           => "Usuarios",
          "words.update"          => "Actualizar",
